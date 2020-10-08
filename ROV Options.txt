@@ -1,0 +1,15 @@
+192.168.0.101
+192.168.0.102
+Oxygen
+Pressure
+Light sensor
+NA
+Extra lights
+Water sample
+NA
+NA
+3
+0
+0
+0.01
+0.02
