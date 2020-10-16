@@ -1,9 +1,9 @@
 /*
  * This code is for the bachelor thesis named "Towed-ROV".
  * The purpose is to build a ROV which will be towed behind a surface vessel
- * and act as a multi-sensor platform, were it shall be easy to place new 
+ * and act as a multi-sensor platform, were it shall be easy to place new
  * sensors. There will also be a video stream from the ROV.
- * 
+ *
  * The system consists of two Raspberry Pis in the ROV that is connected to
  * several Arduino micro controllers. These micro controllers are connected to
  * feedback from the actuators, the echo sounder and extra optional sensors.
@@ -19,7 +19,9 @@ import java.io.IOException;
  * This class updates all of the data from the RPis in the ROV by using their
  * respective TCP clients. It also sends the value from the echo sounder onboard
  * the boat to the ROV.
- * @author Towed ROV 2019 https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
+ *
+ * @author Towed ROV 2019
+ * https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
  */
 public class DataUpdater implements Runnable {
 
@@ -64,6 +66,7 @@ public class DataUpdater implements Runnable {
         if (client_Camera.isConnected()) {
             try {
                 client_Camera.sendCommand("getData");
+                System.out.println("camcommandsent");
             } catch (IOException ex) {
                 System.out.println("Error while getting data from remote: " + ex.getMessage());
             }

@@ -2720,8 +2720,9 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         } else {
             i2cErrorLabel.setText("I²C: OK");
         }
-
+        System.out.print(data.getLeakStatus());
         if (data.getLeakStatus()) {
+
             leakLabel.setText("LEAK DETECTED!");
             leakLabel.setBackground(Color.red);
             data.setEmergencyMode(true);
