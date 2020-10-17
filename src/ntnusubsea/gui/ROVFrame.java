@@ -215,6 +215,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         jPanel1 = new javax.swing.JPanel();
         helpFrameOKbutton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         window = new javax.swing.JPanel();
         background = new javax.swing.JPanel();
         cameraPanel = new javax.swing.JPanel();
@@ -232,8 +233,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         resetManualControlButton = new javax.swing.JButton();
         lockButton = new javax.swing.JToggleButton();
         InputControllerButton = new javax.swing.JToggleButton();
-        wingAngTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        wingAngTextField = new javax.swing.JFormattedTextField();
         lightPanel = new javax.swing.JPanel();
         lightHeader = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -446,6 +447,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jTextField1.setText("jTextField1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Towed ROV");
         setAutoRequestFocus(false);
@@ -628,17 +631,19 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             }
         });
 
-        wingAngTextField.setText("Wing Angle");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Wing Angle");
+        jLabel6.setPreferredSize(new java.awt.Dimension(85, 16));
+
+        wingAngTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        wingAngTextField.setToolTipText("Degrees(Deg)");
+        wingAngTextField.setEnabled(false);
         wingAngTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 wingAngTextFieldActionPerformed(evt);
             }
         });
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Wing Angle");
-        jLabel6.setPreferredSize(new java.awt.Dimension(85, 16));
 
         javax.swing.GroupLayout depthPanelLayout = new javax.swing.GroupLayout(depthPanel);
         depthPanel.setLayout(depthPanelLayout);
@@ -651,11 +656,11 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 .addComponent(manualControlButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(depthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(depthPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(wingAngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                        .addGap(32, 32, 32)
+                        .addComponent(wingAngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
                 .addGroup(depthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(resetManualControlButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -700,6 +705,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                             .addGroup(depthPanelLayout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(resetManualControlButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
                                 .addComponent(lockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
                                 .addComponent(InputControllerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -707,7 +713,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(wingAngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(wingAngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18))
         );
 
@@ -2243,6 +2249,13 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             }
         } else {
             depthModeButton.doClick();
+            try{
+                wingAngTextField.setText(0 + "°");
+                System.out.println("wingAng set to " + 0);
+                this.client_ROV.sendCommand("cmd_wingAng:" + 0);
+            }catch (IOException ex) {
+            System.out.println("IOException: " + ex.getMessage());
+        }
         }
     }//GEN-LAST:event_manualControlButtonActionPerformed
 
@@ -2261,47 +2274,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             //System.out.println("Not in manual control mode.");
         }
     }//GEN-LAST:event_resetManualControlButtonActionPerformed
-
-    private void targetDistanceTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_targetDistanceTextFieldActionPerformed
-    {//GEN-HEADEREND:event_targetDistanceTextFieldActionPerformed
-        data.setEmergencyMode(false);
-        try {
-            targetDistanceTextField.commitEdit();
-            if (targetDistanceTextField.getText() != null && isNumeric(targetDistanceTextField.getText())) {
-                double newSetpoint;
-                try {
-                    newSetpoint = Double.parseDouble(targetDistanceTextField.getText());
-                } catch (ClassCastException ex) {
-                    Long newSetpointLong = Long.parseLong(targetDistanceTextField.getText());
-                    newSetpoint = newSetpointLong.doubleValue();
-                }
-
-                if (newSetpoint <= 50 && newSetpoint >= 0) {
-                    setpointLabel.setBackground(new Color(39, 44, 50));
-//                    previousSetpoint = setpoint;
-//                    setpoint = newSetpoint;
-//                    depthInputTextField.setValue(null);
-                    setpointLabel.setText("Current setpoint: " + newSetpoint + "m");
-                    System.out.println("targetDistance set to " + String.valueOf(newSetpoint));
-                    this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(newSetpoint));
-                } else {
-                    targetDistanceTextField.setValue(null);
-                    targetDistanceTextField.setText("");
-                    JOptionPane.showMessageDialog(this,
-                            "Input is invalid. (Max depth 50m)",
-                            "Input error",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-
-            } else {
-                System.out.println("Invalid input entered.");
-            }
-        } catch (IOException ex) {
-            System.out.println("IOException: " + ex.getMessage());
-        } catch (ParseException ex) {
-            System.out.println("ParseException: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_targetDistanceTextFieldActionPerformed
 
     private void lockButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_lockButtonActionPerformed
     {//GEN-HEADEREND:event_lockButtonActionPerformed
@@ -2403,8 +2375,83 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         }
     }//GEN-LAST:event_jMenuItemStopLoggingActionPerformed
 
+    private void targetDistanceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_targetDistanceTextFieldActionPerformed
+        data.setEmergencyMode(false);
+        try {
+            targetDistanceTextField.commitEdit();
+            if (targetDistanceTextField.getText() != null && isNumeric(targetDistanceTextField.getText())) {
+                double newSetpoint;
+                try {
+                    newSetpoint = Double.parseDouble(targetDistanceTextField.getText());
+                } catch (ClassCastException ex) {
+                    Long newSetpointLong = Long.parseLong(targetDistanceTextField.getText());
+                    newSetpoint = newSetpointLong.doubleValue();
+                }
+
+                if (newSetpoint <= 50 && newSetpoint >= 0) {
+                    setpointLabel.setBackground(new Color(39, 44, 50));
+                    //                    previousSetpoint = setpoint;
+                    //                    setpoint = newSetpoint;
+                    //                    depthInputTextField.setValue(null);
+                    setpointLabel.setText("Current setpoint: " + newSetpoint + "m");
+                    System.out.println("targetDistance set to " + String.valueOf(newSetpoint));
+                    this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(newSetpoint));
+                } else {
+                    targetDistanceTextField.setValue(null);
+                    targetDistanceTextField.setText("");
+                    JOptionPane.showMessageDialog(this,
+                        "Input is invalid. (Max depth 50m)",
+                        "Input error",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                System.out.println("Invalid input entered.");
+            }
+        } catch (IOException ex) {
+            System.out.println("IOException: " + ex.getMessage());
+        } catch (ParseException ex) {
+            System.out.println("ParseException: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_targetDistanceTextFieldActionPerformed
+
     private void wingAngTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wingAngTextFieldActionPerformed
-        // TODO add your handling code here:
+        try {
+            wingAngTextField.commitEdit();
+            if (wingAngTextField.getText() != null && isNumeric(wingAngTextField.getText())) {
+                double newSetpoint;
+                try {
+                    newSetpoint = Double.parseDouble(wingAngTextField.getText());
+                } catch (ClassCastException ex) {
+                    Long newSetpointLong = Long.parseLong(wingAngTextField.getText());
+                    newSetpoint = newSetpointLong.doubleValue();
+                }
+
+                if (newSetpoint <= 30 && newSetpoint >= -30) {
+                    wingLabel.setBackground(new Color(39, 44, 50));
+                    //                    previousSetpoint = setpoint;
+                    //                    setpoint = newSetpoint;
+                    //                    depthInputTextField.setValue(null);
+                    wingAngTextField.setText(newSetpoint + "°");
+                    System.out.println("wingAng set to " + String.valueOf(newSetpoint));
+                    this.client_ROV.sendCommand("cmd_wingAng:" + String.valueOf(newSetpoint));
+                } else {
+                    wingAngTextField.setValue(null);
+                    wingAngTextField.setText("");
+                    JOptionPane.showMessageDialog(this,
+                        "Input is invalid. (Set a value ranging from -30 to 30)",
+                        "Input error",
+                        JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                System.out.println("Invalid input entered.");
+            }
+        } catch (IOException ex) {
+            System.out.println("IOException: " + ex.getMessage());
+        } catch (ParseException ex) {
+            System.out.println("ParseException: " + ex.getMessage());
+        }
     }//GEN-LAST:event_wingAngTextFieldActionPerformed
 
     Action exitFullscreenAction = new AbstractAction() {
@@ -2557,6 +2604,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel latitudeLabel;
     private javax.swing.JLabel leakLabel;
     private javax.swing.JLabel lightHeader;
@@ -2590,7 +2638,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JLabel warningLabel1;
     private javax.swing.JLabel warningLabel2;
     private javax.swing.JPanel window;
-    private javax.swing.JTextField wingAngTextField;
+    private javax.swing.JFormattedTextField wingAngTextField;
     private javax.swing.JLabel wingLabel;
     // End of variables declaration//GEN-END:variables
 
