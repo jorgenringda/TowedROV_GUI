@@ -135,9 +135,9 @@ public final class Data extends Observable {
     private String KpDepth = "1";
     private String KiDepth = "2";
     private String KdDepth = "3";
-    private String kpTrim = "1";
-    private String kiTrim = "2";
-    private String kdTrim = "3";
+    private String KpTrim = "1";
+    private String KiTrim = "2";
+    private String KdTrim = "3";
     private String offsetDepthBeneathROV = "0.00";
     private String offsetROVdepth = "0.00";
     private long timer = System.currentTimeMillis();
@@ -174,6 +174,9 @@ public final class Data extends Observable {
                 this.setKpDepth(br.readLine());
                 this.setKiDepth(br.readLine());
                 this.setKdDepth(br.readLine());
+                this.setKpTrim(br.readLine());
+                this.setKiTrim(br.readLine());
+                this.setKdTrim(br.readLine());
                 this.setOffsetDepthBeneathROV(br.readLine());
                 this.setOffsetROVdepth(br.readLine());
             } catch (Exception e) {
@@ -191,6 +194,9 @@ public final class Data extends Observable {
                 this.setKpDepth("0");
                 this.setKiDepth("0");
                 this.setKdDepth("0");
+                this.setKpTrim("0");
+                this.setKiTrim("0");
+                this.setKdTrim("0");
                 this.setOffsetDepthBeneathROV("0");
                 this.setOffsetROVdepth("0");
             }
@@ -267,20 +273,7 @@ public final class Data extends Observable {
     public synchronized String getKpDepth() {
         return KpDepth;
     }
-    
-    public void setKpTrim(String value) {
-        this.KpTrim = value;
-    }
-
-    /**
-     * Returns the KpDepth parameter of the PID
-     *
-     * @return the KpDepth parameter of the PID
-     */
-    public synchronized String getKpTrim() {
-        return KpTrim;
-    }
-
+        
     /**
      * Sets the KiDepth parameter of the PID
      *
@@ -298,6 +291,7 @@ public final class Data extends Observable {
     public synchronized String getKiDepth() {
         return KiDepth;
     }
+    
 
     /**
      * Sets the KdDepth parameter of the PID
@@ -315,6 +309,45 @@ public final class Data extends Observable {
      */
     public synchronized String getKdDepth() {
         return KdDepth;
+    }
+    
+    public void setKpTrim(String value) {
+        this.KpTrim = value;
+    }
+
+    /**
+     * Returns the KpDepth parameter of the PID
+     *
+     * @return the KpDepth parameter of the PID
+     */
+    public synchronized String getKpTrim() {
+        return KpTrim;
+    }
+    
+    public void setKiTrim(String value) {
+        this.KiTrim = value;
+    }
+
+    /**
+     * Returns the KpDepth parameter of the PID
+     *
+     * @return the KpDepth parameter of the PID
+     */
+    public synchronized String getKiTrim() {
+        return KiTrim;
+    }
+    
+    public void setKdTrim(String value) {
+        this.KdTrim = value;
+    }
+
+    /**
+     * Returns the KpDepth parameter of the PID
+     *
+     * @return the KpDepth parameter of the PID
+     */
+    public synchronized String getKdTrim() {
+        return KdTrim;
     }
 
     /**
