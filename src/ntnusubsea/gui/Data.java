@@ -132,9 +132,12 @@ public final class Data extends Observable {
     private String IP_Rov = "";
     private String IP_Camera = "";
     private BufferedImage videoImage;
-    private String Kp = "1";
-    private String Ki = "2";
-    private String Kd = "3";
+    private String KpDepth = "1";
+    private String KiDepth = "2";
+    private String KdDepth = "3";
+    private String kpTrim = "1";
+    private String kiTrim = "2";
+    private String kdTrim = "3";
     private String offsetDepthBeneathROV = "0.00";
     private String offsetROVdepth = "0.00";
     private long timer = System.currentTimeMillis();
@@ -168,9 +171,9 @@ public final class Data extends Observable {
                 labels.add(5, br.readLine());
                 labels.add(6, br.readLine());
                 labels.add(7, br.readLine());
-                this.setKp(br.readLine());
-                this.setKi(br.readLine());
-                this.setKd(br.readLine());
+                this.setKpDepth(br.readLine());
+                this.setKiDepth(br.readLine());
+                this.setKdDepth(br.readLine());
                 this.setOffsetDepthBeneathROV(br.readLine());
                 this.setOffsetROVdepth(br.readLine());
             } catch (Exception e) {
@@ -185,9 +188,9 @@ public final class Data extends Observable {
                 labels.add(5, "6");
                 labels.add(6, "7");
                 labels.add(7, "8");
-                this.setKp("0");
-                this.setKi("0");
-                this.setKd("0");
+                this.setKpDepth("0");
+                this.setKiDepth("0");
+                this.setKdDepth("0");
                 this.setOffsetDepthBeneathROV("0");
                 this.setOffsetROVdepth("0");
             }
@@ -248,57 +251,70 @@ public final class Data extends Observable {
     }
 
     /**
-     * Sets the Kp parameter of the PID
+     * Sets the KpDepth parameter of the PID
      *
-     * @param value the Kp parameter of the PID
+     * @param value the KpDepth parameter of the PID
      */
-    public void setKp(String value) {
-        this.Kp = value;
+    public void setKpDepth(String value) {
+        this.KpDepth = value;
     }
 
     /**
-     * Returns the Kp parameter of the PID
+     * Returns the KpDepth parameter of the PID
      *
-     * @return the Kp parameter of the PID
+     * @return the KpDepth parameter of the PID
      */
-    public synchronized String getKp() {
-        return Kp;
+    public synchronized String getKpDepth() {
+        return KpDepth;
+    }
+    
+    public void setKpTrim(String value) {
+        this.KpTrim = value;
     }
 
     /**
-     * Sets the Ki parameter of the PID
+     * Returns the KpDepth parameter of the PID
      *
-     * @param value the Ki parameter of the PID
+     * @return the KpDepth parameter of the PID
      */
-    public void setKi(String value) {
-        this.Ki = value;
+    public synchronized String getKpTrim() {
+        return KpTrim;
     }
 
     /**
-     * Returns the Ki parameter of the PID
+     * Sets the KiDepth parameter of the PID
      *
-     * @return the Ki parameter of the PID
+     * @param value the KiDepth parameter of the PID
      */
-    public synchronized String getKi() {
-        return Ki;
+    public void setKiDepth(String value) {
+        this.KiDepth = value;
     }
 
     /**
-     * Sets the Kd parameter of the PID
+     * Returns the KiDepth parameter of the PID
      *
-     * @param value the Kd parameter of the PID
+     * @return the KiDepth parameter of the PID
      */
-    public void setKd(String value) {
-        this.Kd = value;
+    public synchronized String getKiDepth() {
+        return KiDepth;
     }
 
     /**
-     * Returns the Kd parameter of the PID
+     * Sets the KdDepth parameter of the PID
      *
-     * @return the Kd parameter of the PID
+     * @param value the KdDepth parameter of the PID
      */
-    public synchronized String getKd() {
-        return Kd;
+    public void setKdDepth(String value) {
+        this.KdDepth = value;
+    }
+
+    /**
+     * Returns the KdDepth parameter of the PID
+     *
+     * @return the KdDepth parameter of the PID
+     */
+    public synchronized String getKdDepth() {
+        return KdDepth;
     }
 
     /**
@@ -1526,4 +1542,6 @@ public final class Data extends Observable {
         this.TestDepth = TestDepth;
         this.setRovDepth(TestDepth);
     }
+
+    
 }

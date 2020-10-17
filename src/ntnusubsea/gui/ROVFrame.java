@@ -966,7 +966,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(cameraHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(cameraControlPanelLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(cameraControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cameraControlPanelLayout.createSequentialGroup()
                         .addGroup(cameraControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -983,7 +983,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                                 .addComponent(cameraPitchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cameraControlPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                                 .addComponent(photoModeDelay_FB_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(cameraControlPanelLayout.createSequentialGroup()
@@ -1920,11 +1920,11 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 cameraPitchTextField.setEnabled(true);
                 delayTextField.setEnabled(true);
 
-                this.client_ROV.sendCommand("cmd_pid_p:" + data.getKp());
+                this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_pid_i:" + data.getKi());
+                this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_pid_d:" + data.getKd());
+                this.client_ROV.sendCommand("cmd_pid_d:" + data.getKdDepth());
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
                 Thread.sleep(10);
@@ -1951,11 +1951,11 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 lockButton.setEnabled(true);
                 io.enableIO();
 
-                this.client_ROV.sendCommand("cmd_pid_p:" + data.getKp());
+                this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_pid_i:" + data.getKi());
+                this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_pid_d:" + data.getKd());
+                this.client_ROV.sendCommand("cmd_pid_d:" + data.getKdDepth());
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
                 Thread.sleep(10);
