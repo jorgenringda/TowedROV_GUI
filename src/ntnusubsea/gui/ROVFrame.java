@@ -232,8 +232,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         resetManualControlButton = new javax.swing.JButton();
         lockButton = new javax.swing.JToggleButton();
         InputControllerButton = new javax.swing.JToggleButton();
-        jButtonManualUp = new javax.swing.JButton();
-        jButtonManualDown = new javax.swing.JButton();
+        wingAngTextField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         lightPanel = new javax.swing.JPanel();
         lightHeader = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -628,29 +628,17 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             }
         });
 
-        jButtonManualUp.setBackground(new java.awt.Color(39, 44, 50));
-        jButtonManualUp.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        jButtonManualUp.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonManualUp.setText("UP");
-        jButtonManualUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonManualUp.setFocusPainted(false);
-        jButtonManualUp.addActionListener(new java.awt.event.ActionListener() {
+        wingAngTextField.setText("Wing Angle");
+        wingAngTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonManualUpActionPerformed(evt);
+                wingAngTextFieldActionPerformed(evt);
             }
         });
 
-        jButtonManualDown.setBackground(new java.awt.Color(39, 44, 50));
-        jButtonManualDown.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        jButtonManualDown.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonManualDown.setText("DOWN");
-        jButtonManualDown.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonManualDown.setFocusPainted(false);
-        jButtonManualDown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonManualDownActionPerformed(evt);
-            }
-        });
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Wing Angle");
+        jLabel6.setPreferredSize(new java.awt.Dimension(85, 16));
 
         javax.swing.GroupLayout depthPanelLayout = new javax.swing.GroupLayout(depthPanel);
         depthPanel.setLayout(depthPanelLayout);
@@ -665,10 +653,9 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(depthPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(depthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonManualUp, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonManualDown, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(wingAngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addGroup(depthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(resetManualControlButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -709,16 +696,19 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     .addGroup(depthPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addGroup(depthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(resetManualControlButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonManualUp))
-                        .addComponent(lockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
                         .addGroup(depthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(InputControllerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonManualDown))))
-                .addContainerGap())
+                            .addGroup(depthPanelLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(resetManualControlButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(InputControllerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(depthPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(wingAngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18))
         );
 
         lightPanel.setBackground(new java.awt.Color(39, 44, 50));
@@ -1072,7 +1062,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     .addComponent(cameraControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emergencyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(depthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
             .addComponent(lightPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1831,8 +1821,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         /* actuatorControlPS.setValue(127);
         actuatorControlSB.setValue(127);
         actuatorPosLabel.setText("<html>PS: " + String.valueOf(actuatorControlPS.getValue()) + "<br/><br/>SB: " + String.valueOf(actuatorControlSB.getValue()));*/
-        jButtonManualUp.setEnabled(false);
-        jButtonManualDown.setEnabled(false);
+        //jButtonManualUp.setEnabled(false);
+        //jButtonManualDown.setEnabled(false);
         if (this.targetMode != 1) {
             this.targetMode = 1;
             System.out.println("Mode 1 - Distance from seafloor");
@@ -2106,8 +2096,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         /* actuatorControlPS.setValue(127);
         actuatorControlSB.setValue(127);
         actuatorPosLabel.setText("<html>PS: " + String.valueOf(actuatorControlPS.getValue()) + "<br/><br/>SB: " + String.valueOf(actuatorControlSB.getValue()));*/
-        jButtonManualUp.setEnabled(false);
-        jButtonManualDown.setEnabled(false);
+        wingAngTextField.setEnabled(false);
         if (this.targetMode != 0) {
             this.targetMode = 0;
             data.setManualMode(false);
@@ -2243,8 +2232,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private void manualControlButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_manualControlButtonActionPerformed
     {//GEN-HEADEREND:event_manualControlButtonActionPerformed
         if (this.targetMode != 2) {
-            jButtonManualDown.setEnabled(true);
-            jButtonManualUp.setEnabled(true);
+            wingAngTextField.setEnabled(true);
             data.setManualMode(true);
             this.targetMode = 2;
             System.out.println("Mode 2 - Manual wing control");
@@ -2415,41 +2403,9 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         }
     }//GEN-LAST:event_jMenuItemStopLoggingActionPerformed
 
-    private void jButtonManualUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManualUpActionPerformed
-
+    private void wingAngTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wingAngTextFieldActionPerformed
         // TODO add your handling code here:
-        if (manualControlButton.isSelected()) {
-            try {
-                client_ROV.sendCommand("cmd_stepperManualUp");
-            } catch (IOException ex) {
-                System.out.println("Error while pressing manual up : " + ex.getMessage());
-            }
-            // } else {
-            //     try {
-            //         client_ROV.sendCommand("cmd_BlueLED:0");
-            //   } catch (IOException ex) {
-            //         System.out.println("Error while turning the blue LEDs off: " + ex.getMessage());
-            //     }
-        }
-    }//GEN-LAST:event_jButtonManualUpActionPerformed
-
-    private void jButtonManualDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManualDownActionPerformed
-
-        // TODO add your handling code here:
-        if (manualControlButton.isSelected()) {
-            try {
-                client_ROV.sendCommand("cmd_stepperManualDown");
-            } catch (IOException ex) {
-                System.out.println("Error while pressing manual down : " + ex.getMessage());
-            }
-            // } else {
-            //     try {
-            //         client_ROV.sendCommand("cmd_BlueLED:0");
-            //   } catch (IOException ex) {
-            //         System.out.println("Error while turning the blue LEDs off: " + ex.getMessage());
-            //     }
-        }
-    }//GEN-LAST:event_jButtonManualDownActionPerformed
+    }//GEN-LAST:event_wingAngTextFieldActionPerformed
 
     Action exitFullscreenAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -2550,8 +2506,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JLabel imageNumberLabel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel insideTempLabel;
-    private javax.swing.JButton jButtonManualDown;
-    private javax.swing.JButton jButtonManualUp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2566,6 +2520,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2635,6 +2590,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JLabel warningLabel1;
     private javax.swing.JLabel warningLabel2;
     private javax.swing.JPanel window;
+    private javax.swing.JTextField wingAngTextField;
     private javax.swing.JLabel wingLabel;
     // End of variables declaration//GEN-END:variables
 
