@@ -1,9 +1,9 @@
 /*
  * This code is for the bachelor thesis named "Towed-ROV".
  * The purpose is to build a ROV which will be towed behind a surface vessel
- * and act as a multi-sensor platform, were it shall be easy to place new 
+ * and act as a multi-sensor platform, were it shall be easy to place new
  * sensors. There will also be a video stream from the ROV.
- * 
+ *
  * The system consists of two Raspberry Pis in the ROV that is connected to
  * several Arduino micro controllers. These micro controllers are connected to
  * feedback from the actuators, the echo sounder and extra optional sensors.
@@ -18,27 +18,24 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 /**
  * The data class is a storage box that let's the different threads change and
  * retrieve various data. The data class is a subclass of the java class
  * Observable, which makes it possible for observers to subscribe and update
  * their values whenever they change.
- *@author Towed ROV 2019 https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
- * edited 2020, added get and set method for stepper position on starboard and portside
+ *
+ * @author Towed ROV 2019
+ * https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356 edited 2020, added
+ * get and set method for stepper position on starboard and portside
  */
 public final class Data extends Observable {
 
@@ -115,7 +112,8 @@ public final class Data extends Observable {
     private double depthBeneathRov = 0;
     private double depthBeneathBoat = 0;
     private double pitchAngle = 0;
-    private float wingAngle = 0;
+    private float wingAngleSB = 0;
+    private float wingAnglePS = 0;
     private double rollAngle = 0;
     private float channel1 = 0;
     private float channel2 = 0;
@@ -273,7 +271,7 @@ public final class Data extends Observable {
     public synchronized String getKpDepth() {
         return KpDepth;
     }
-        
+
     /**
      * Sets the KiDepth parameter of the PID
      *
@@ -291,7 +289,6 @@ public final class Data extends Observable {
     public synchronized String getKiDepth() {
         return KiDepth;
     }
-    
 
     /**
      * Sets the KdDepth parameter of the PID
@@ -310,7 +307,7 @@ public final class Data extends Observable {
     public synchronized String getKdDepth() {
         return KdDepth;
     }
-    
+
     public void setKpTrim(String value) {
         this.KpTrim = value;
     }
@@ -323,7 +320,7 @@ public final class Data extends Observable {
     public synchronized String getKpTrim() {
         return KpTrim;
     }
-    
+
     public void setKiTrim(String value) {
         this.KiTrim = value;
     }
@@ -336,7 +333,7 @@ public final class Data extends Observable {
     public synchronized String getKiTrim() {
         return KiTrim;
     }
-    
+
     public void setKdTrim(String value) {
         this.KdTrim = value;
     }
@@ -506,7 +503,7 @@ public final class Data extends Observable {
      * @param angle Current wing angle of the ROV
      */
     public synchronized void setWingAngle(float angle) {
-        wingAngle = angle;
+
         setChanged();
         notifyObservers();
     }
@@ -516,8 +513,17 @@ public final class Data extends Observable {
      *
      * @return Current wing angle of the ROV
      */
-    public synchronized float getWingAngle() {
-        return wingAngle;
+    public synchronized float getWingAngleSB() {
+        return wingAngleSB;
+    }
+
+    /**
+     * Retrieves the current pitch angle
+     *
+     * @return Current wing angle of the ROV
+     */
+    public synchronized float getWingAnglePS() {
+        return wingAnglePS;
     }
 
     /**
@@ -1348,7 +1354,6 @@ public final class Data extends Observable {
         this.fb_stepperSBPos = fb_stepperSBPos;
     }
 
-
     /**
      * Returns the PS minimum actuator position
      *
@@ -1576,5 +1581,4 @@ public final class Data extends Observable {
         this.setRovDepth(TestDepth);
     }
 
-    
 }
