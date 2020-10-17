@@ -267,23 +267,13 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         infoPanel = new javax.swing.JPanel();
         actuatorPanel1 = new javax.swing.JPanel();
         stepperHeader1 = new javax.swing.JLabel();
-        stepperPSPosBar = new javax.swing.JProgressBar();
+        wingAngPSPosBar = new javax.swing.JProgressBar();
         warningLabel1 = new javax.swing.JLabel();
         actuatorPanel2 = new javax.swing.JPanel();
         stepperHeader2 = new javax.swing.JLabel();
-        stepperSBPosBar = new javax.swing.JProgressBar();
+        wingAngleSBPosBar = new javax.swing.JProgressBar();
         warningLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        wingLabel = new javax.swing.JLabel();
-        pitchLabel = new javax.swing.JLabel();
-        rollLabel = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        stepperPSPosLabel = new javax.swing.JLabel();
-        stepperSBPosLabel = new javax.swing.JLabel();
-        i2cErrorLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         seafloorDepthRovLabel = new javax.swing.JLabel();
         rovDepthLabel = new javax.swing.JLabel();
@@ -308,6 +298,16 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         humidityLabel = new javax.swing.JLabel();
         pressureLabel = new javax.swing.JLabel();
         actuatorSBPosLabel1 = new javax.swing.JLabel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        pitchLabel = new javax.swing.JLabel();
+        rollLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        wingAnglePSPosLabel = new javax.swing.JLabel();
+        wingAngleSBPosLabel = new javax.swing.JLabel();
+        i2cErrorLabel = new javax.swing.JLabel();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jMenuBar = new javax.swing.JMenuBar();
         jMenuTools = new javax.swing.JMenu();
@@ -455,9 +455,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         setBackground(new java.awt.Color(39, 44, 50));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(39, 44, 50));
-        setMaximumSize(new java.awt.Dimension(1460, 890));
         setMinimumSize(new java.awt.Dimension(1460, 890));
-        setPreferredSize(new java.awt.Dimension(1460, 890));
         setSize(new java.awt.Dimension(1445, 853));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -962,7 +960,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(cameraHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(cameraControlPanelLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(cameraControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cameraControlPanelLayout.createSequentialGroup()
                         .addGroup(cameraControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -979,7 +977,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                                 .addComponent(cameraPitchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cameraControlPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                                 .addComponent(photoModeDelay_FB_Label, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(cameraControlPanelLayout.createSequentialGroup()
@@ -1068,7 +1066,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     .addComponent(cameraControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emergencyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(depthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(lightPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1085,16 +1083,16 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         stepperHeader1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         stepperHeader1.setForeground(new java.awt.Color(255, 255, 255));
         stepperHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        stepperHeader1.setText("PS Stepper Position");
+        stepperHeader1.setText("PS Wing Angle");
 
-        stepperPSPosBar.setBackground(new java.awt.Color(42, 48, 57));
-        stepperPSPosBar.setForeground(new java.awt.Color(97, 184, 114));
-        stepperPSPosBar.setMaximum(2000);
-        stepperPSPosBar.setToolTipText("");
-        stepperPSPosBar.setValue(1000);
-        stepperPSPosBar.addChangeListener(new javax.swing.event.ChangeListener() {
+        wingAngPSPosBar.setBackground(new java.awt.Color(42, 48, 57));
+        wingAngPSPosBar.setForeground(new java.awt.Color(97, 184, 114));
+        wingAngPSPosBar.setMaximum(30);
+        wingAngPSPosBar.setMinimum(-30);
+        wingAngPSPosBar.setToolTipText("");
+        wingAngPSPosBar.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                stepperPSPosBarStateChanged(evt);
+                wingAngPSPosBarStateChanged(evt);
             }
         });
 
@@ -1111,14 +1109,14 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             actuatorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(stepperHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(warningLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(stepperPSPosBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(wingAngPSPosBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         actuatorPanel1Layout.setVerticalGroup(
             actuatorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(actuatorPanel1Layout.createSequentialGroup()
                 .addComponent(stepperHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(stepperPSPosBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(wingAngPSPosBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(warningLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1131,16 +1129,16 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         stepperHeader2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         stepperHeader2.setForeground(new java.awt.Color(255, 255, 255));
         stepperHeader2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        stepperHeader2.setText("SB Stepper Position");
+        stepperHeader2.setText("SB Wing Angle");
 
-        stepperSBPosBar.setBackground(new java.awt.Color(42, 48, 57));
-        stepperSBPosBar.setForeground(new java.awt.Color(97, 184, 114));
-        stepperSBPosBar.setMaximum(2000);
-        stepperSBPosBar.setToolTipText("");
-        stepperSBPosBar.setValue(1000);
-        stepperSBPosBar.addChangeListener(new javax.swing.event.ChangeListener() {
+        wingAngleSBPosBar.setBackground(new java.awt.Color(42, 48, 57));
+        wingAngleSBPosBar.setForeground(new java.awt.Color(97, 184, 114));
+        wingAngleSBPosBar.setMaximum(30);
+        wingAngleSBPosBar.setMinimum(-30);
+        wingAngleSBPosBar.setToolTipText("");
+        wingAngleSBPosBar.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                stepperSBPosBarStateChanged(evt);
+                wingAngleSBPosBarStateChanged(evt);
             }
         });
 
@@ -1155,7 +1153,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         actuatorPanel2Layout.setHorizontalGroup(
             actuatorPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(stepperHeader2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(stepperSBPosBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(wingAngleSBPosBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(warningLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         actuatorPanel2Layout.setVerticalGroup(
@@ -1163,120 +1161,12 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             .addGroup(actuatorPanel2Layout.createSequentialGroup()
                 .addComponent(stepperHeader2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(stepperSBPosBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(wingAngleSBPosBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(warningLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setBackground(new java.awt.Color(39, 44, 50));
-
-        jPanel3.setBackground(new java.awt.Color(39, 44, 50));
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 53, 62), 1, true));
-
-        jLabel7.setBackground(new java.awt.Color(42, 48, 57));
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("ROV");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setOpaque(true);
-
-        wingLabel.setBackground(new java.awt.Color(39, 46, 54));
-        wingLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        wingLabel.setForeground(new java.awt.Color(255, 255, 255));
-        wingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        wingLabel.setText("Wing Angle: 0.1");
-        wingLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        wingLabel.setOpaque(true);
-
-        pitchLabel.setBackground(new java.awt.Color(39, 46, 54));
-        pitchLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pitchLabel.setForeground(new java.awt.Color(255, 255, 255));
-        pitchLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pitchLabel.setText("Pitch Angle: 0.1");
-        pitchLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pitchLabel.setOpaque(true);
-
-        rollLabel.setBackground(new java.awt.Color(39, 46, 54));
-        rollLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rollLabel.setForeground(new java.awt.Color(255, 255, 255));
-        rollLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rollLabel.setText("Roll Angle: 0.1");
-        rollLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rollLabel.setMinimumSize(new java.awt.Dimension(140, 110));
-        rollLabel.setOpaque(true);
-
-        jLabel9.setBackground(new java.awt.Color(39, 46, 54));
-        jLabel9.setOpaque(true);
-
-        jLabel15.setBackground(new java.awt.Color(39, 46, 54));
-        jLabel15.setOpaque(true);
-
-        stepperPSPosLabel.setBackground(new java.awt.Color(39, 46, 54));
-        stepperPSPosLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        stepperPSPosLabel.setForeground(new java.awt.Color(255, 255, 255));
-        stepperPSPosLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        stepperPSPosLabel.setText("PS Stepper Pos: 0.1");
-        stepperPSPosLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        stepperPSPosLabel.setOpaque(true);
-
-        stepperSBPosLabel.setBackground(new java.awt.Color(39, 46, 54));
-        stepperSBPosLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        stepperSBPosLabel.setForeground(new java.awt.Color(255, 255, 255));
-        stepperSBPosLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        stepperSBPosLabel.setText("SB Stepper Pos: 0.1");
-        stepperSBPosLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        stepperSBPosLabel.setOpaque(true);
-
-        i2cErrorLabel.setBackground(new java.awt.Color(39, 46, 54));
-        i2cErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        i2cErrorLabel.setForeground(new java.awt.Color(255, 255, 255));
-        i2cErrorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        i2cErrorLabel.setText("I2C: OK");
-        i2cErrorLabel.setToolTipText("");
-        i2cErrorLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        i2cErrorLabel.setOpaque(true);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(stepperSBPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stepperPSPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(i2cErrorLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(wingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rollLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pitchLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(rollLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pitchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(wingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(stepperPSPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(stepperSBPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(i2cErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         jPanel4.setBackground(new java.awt.Color(39, 44, 50));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 53, 62), 1, true));
@@ -1528,6 +1418,122 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(39, 44, 50));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(45, 53, 62), 1, true));
+
+        jLabel7.setBackground(new java.awt.Color(42, 48, 57));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("ROV");
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel7.setOpaque(true);
+
+        pitchLabel.setBackground(new java.awt.Color(39, 46, 54));
+        pitchLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pitchLabel.setForeground(new java.awt.Color(255, 255, 255));
+        pitchLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pitchLabel.setText("Pitch Angle: 0.1");
+        pitchLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pitchLabel.setOpaque(true);
+
+        rollLabel.setBackground(new java.awt.Color(39, 46, 54));
+        rollLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rollLabel.setForeground(new java.awt.Color(255, 255, 255));
+        rollLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rollLabel.setText("Roll Angle: 0.1");
+        rollLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        rollLabel.setMinimumSize(new java.awt.Dimension(140, 110));
+        rollLabel.setOpaque(true);
+
+        jLabel9.setBackground(new java.awt.Color(39, 46, 54));
+        jLabel9.setOpaque(true);
+
+        jLabel15.setBackground(new java.awt.Color(39, 46, 54));
+        jLabel15.setOpaque(true);
+
+        wingAnglePSPosLabel.setBackground(new java.awt.Color(39, 46, 54));
+        wingAnglePSPosLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        wingAnglePSPosLabel.setForeground(new java.awt.Color(255, 255, 255));
+        wingAnglePSPosLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        wingAnglePSPosLabel.setText("PS Wing Angle: 0.1");
+        wingAnglePSPosLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        wingAnglePSPosLabel.setOpaque(true);
+
+        wingAngleSBPosLabel.setBackground(new java.awt.Color(39, 46, 54));
+        wingAngleSBPosLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        wingAngleSBPosLabel.setForeground(new java.awt.Color(255, 255, 255));
+        wingAngleSBPosLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        wingAngleSBPosLabel.setText("SB Wing Angle: 0.1");
+        wingAngleSBPosLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        wingAngleSBPosLabel.setOpaque(true);
+
+        i2cErrorLabel.setBackground(new java.awt.Color(39, 46, 54));
+        i2cErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        i2cErrorLabel.setForeground(new java.awt.Color(255, 255, 255));
+        i2cErrorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        i2cErrorLabel.setText("I2C: OK");
+        i2cErrorLabel.setToolTipText("");
+        i2cErrorLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        i2cErrorLabel.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(wingAnglePSPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(176, 176, 176)
+                    .addComponent(i2cErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rollLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pitchLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(wingAngleSBPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rollLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pitchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(wingAnglePSPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(wingAngleSBPosLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(i2cErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jDesktopPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1536,7 +1542,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1547,9 +1553,9 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1806,19 +1812,12 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         System.out.println(key);
     }//GEN-LAST:event_fullscreenKeyPressed
 
-    private void stepperPSPosBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_stepperPSPosBarStateChanged
-        int stepperTime1 = stepperPSPosBar.getValue();
-        if (stepperTime1 <= 2000) {
-//            actuatorPSPosBar.setForeground(new Color(actuatorTime1, 255, 0));
-            stepperPSPosBar.setForeground(new Color(77, 192, 99));
-            warningLabel1.setText("");
-            warningLabel1.setBackground(new Color(42, 48, 57));
-        } else {
-            stepperPSPosBar.setForeground(new Color(255, 255 + (2000 - stepperTime1), 0));
-            warningLabel1.setText("Warning!");
-            warningLabel1.setBackground(Color.red);
-        }
-    }//GEN-LAST:event_stepperPSPosBarStateChanged
+    private void wingAngPSPosBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_wingAngPSPosBarStateChanged
+
+        wingAngPSPosBar.setForeground(new Color(77, 192, 99));
+        warningLabel1.setText("");
+        warningLabel1.setBackground(new Color(42, 48, 57));
+    }//GEN-LAST:event_wingAngPSPosBarStateChanged
 
     private void seafloorModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seafloorModeButtonActionPerformed
 
@@ -2079,18 +2078,12 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         //helpframe.setLocation(this.getLocation().x, this.getLocation().y);
     }//GEN-LAST:event_jMenuAboutActionPerformed
 
-    private void stepperSBPosBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_stepperSBPosBarStateChanged
-        int stepperTime2 = stepperSBPosBar.getValue();
-        if (stepperTime2 <= 2000) {
-            stepperSBPosBar.setForeground(new Color(77, 192, 99));
-            warningLabel2.setText("");
-            warningLabel2.setBackground(new Color(42, 48, 57));
-        } else {
-            stepperSBPosBar.setForeground(new Color(255, 255 + (2000 - stepperTime2), 0));
-            warningLabel2.setText("Warning!");
-            warningLabel2.setBackground(Color.red);
-        }
-    }//GEN-LAST:event_stepperSBPosBarStateChanged
+    private void wingAngleSBPosBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_wingAngleSBPosBarStateChanged
+
+        wingAngleSBPosBar.setForeground(new Color(77, 192, 99));
+        warningLabel2.setText("");
+        warningLabel2.setBackground(new Color(42, 48, 57));
+    }//GEN-LAST:event_wingAngleSBPosBarStateChanged
 
     private void jMenuOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOptionsActionPerformed
         options.setVisible(true);
@@ -2553,6 +2546,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JLabel imageNumberLabel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel insideTempLabel;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2630,16 +2624,17 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JLabel setpointLabel;
     private javax.swing.JLabel stepperHeader1;
     private javax.swing.JLabel stepperHeader2;
-    private javax.swing.JProgressBar stepperPSPosBar;
-    private javax.swing.JLabel stepperPSPosLabel;
-    private javax.swing.JProgressBar stepperSBPosBar;
-    private javax.swing.JLabel stepperSBPosLabel;
     private javax.swing.JFormattedTextField targetDistanceTextField;
     private javax.swing.JLabel warningLabel1;
     private javax.swing.JLabel warningLabel2;
     private javax.swing.JPanel window;
     private javax.swing.JFormattedTextField wingAngTextField;
     private javax.swing.JLabel wingLabel;
+    private javax.swing.JProgressBar wingAngPSPosBar;
+    private javax.swing.JTextField wingAngTextField;
+    private javax.swing.JLabel wingAnglePSPosLabel;
+    private javax.swing.JProgressBar wingAngleSBPosBar;
+    private javax.swing.JLabel wingAngleSBPosLabel;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -2688,7 +2683,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             manualControlButton.doClick();
             try {
                 this.client_ROV.sendCommand("cmd_targetMode:2");
-                this.client_ROV.sendCommand("cmd_stepper:1000");
+                this.client_ROV.sendCommand("cmd_angle:30");
             } catch (IOException ex) {
                 System.out.println("IOException in emergencyStopButtonActionPerformed: " + ex.getMessage());
             }
@@ -2702,7 +2697,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
 
         rollLabel.setText("Roll Angle: " + data.getRollAngle());
         pitchLabel.setText("Pitch Angle: " + data.getPitchAngle());
-        wingLabel.setText("Wing Angle: " + data.getWingAngle());
 
         seafloorDepthBoatLabel.setText("Beneath Boat: " + String.valueOf(df2.format(data.getDepthBeneathBoat())) + "m");
         seafloorDepthRovLabel.setText("Beneath ROV: " + data.getDepthBeneathRov() + "m");
@@ -2712,10 +2706,10 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         longitudeLabel.setText("Longitude: " + data.getLongitude());
         latitudeLabel.setText("Latitude: " + data.getLatitude());
 
-        stepperPSPosLabel.setText("PS Position: " + data.getFb_stepperPSPos());
-        stepperSBPosLabel.setText("SB Position: " + data.getFb_stepperSBPos());
-        stepperPSPosBar.setValue(data.getFb_stepperPSPos());
-        stepperSBPosBar.setValue(data.getFb_stepperSBPos());
+        wingAnglePSPosLabel.setText("PS Angle: " + data.getWingAnglePS());
+        wingAngleSBPosLabel.setText("SB Angle: " + data.getWingAngleSB());
+        wingAngPSPosBar.setValue((int) data.getWingAnglePS());
+        wingAngleSBPosBar.setValue((int) data.getWingAngleSB());
 
         if (data.isI2cError()) {
             i2cErrorLabel.setText("I²C: ERROR!");
