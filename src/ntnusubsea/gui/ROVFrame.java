@@ -1887,7 +1887,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private void jMenuItemConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConnectActionPerformed
 //        String ip = (String) JOptionPane.showInputDialog(this, "Enter IP", "Connection", JOptionPane.PLAIN_MESSAGE, null, null, data.getIP_Rov());
         try {
-
             this.clientThreadExecutor = Executors.newScheduledThreadPool(4);
             clientThreadExecutor.scheduleAtFixedRate(client_ROV,
                     0, 100, TimeUnit.MILLISECONDS);
@@ -1896,7 +1895,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             clientThreadExecutor.scheduleAtFixedRate(udpServer,
                     0, 20, TimeUnit.MILLISECONDS);
             Thread.sleep(500);
-
             if (client_ROV.isConnected() && client_Camera.isConnected()) {
                 // ROV RPi:
                 clientThreadExecutor.scheduleAtFixedRate(client_Pinger,
@@ -1918,6 +1916,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 cameraPitchSlider.setEnabled(true);
                 cameraOffsetTextField.setEnabled(true);
                 delayTextField.setEnabled(true);
+                System.out.println("conenct2");
 
                 this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
                 Thread.sleep(10);
@@ -1949,7 +1948,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 resetManualControlButton.setEnabled(true);
                 lockButton.setEnabled(true);
                 io.enableIO();
-
                 this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
@@ -1976,7 +1974,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 cameraPitchSlider.setEnabled(true);
                 cameraOffsetTextField.setEnabled(true);
                 delayTextField.setEnabled(true);
-
                 jMenuConnect.setText("Connected 1/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/NotCalibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);

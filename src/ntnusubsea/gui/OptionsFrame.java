@@ -275,6 +275,11 @@ public class OptionsFrame extends javax.swing.JFrame {
         jLabel18.setText("Ki");
 
         KiTrimTextField.setText("Ki");
+        KiTrimTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KiTrimTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel19.setText("Kd");
 
@@ -507,8 +512,8 @@ public class OptionsFrame extends javax.swing.JFrame {
             this.client_ROV.sendCommand("cmd_pidTrim_p:" + KpTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_pidTrim_i:" + KiTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_pidTrim_d:" + KdTrimTextField.getText());
-            this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + KdDepthTextField.getText());
-            this.client_ROV.sendCommand("cmd_offsetROVdepth:" + KdDepthTextField.getText());
+            this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + offset1TextField.getText());
+            this.client_ROV.sendCommand("cmd_offsetROVdepth:" + offset2TextField.getText());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -636,6 +641,10 @@ public class OptionsFrame extends javax.swing.JFrame {
     private void offset1TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offset1TextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_offset1TextFieldActionPerformed
+
+    private void KiTrimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KiTrimTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KiTrimTextFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KdDepthTextField;
