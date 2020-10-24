@@ -455,7 +455,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KpDepthTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kp"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KpDepthTextFieldActionPerformed"/>
@@ -473,7 +473,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KiDepthTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ki"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KiDepthTextFieldActionPerformed"/>
@@ -486,7 +486,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KdDepthTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kd"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KdDepthTextFieldActionPerformed"/>
@@ -538,7 +538,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KpTrimTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kp"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KpTrimTextFieldActionPerformed"/>
@@ -556,7 +556,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KiTrimTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ki"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KiTrimTextFieldActionPerformed"/>
@@ -569,7 +569,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KdTrimTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kd"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KdTrimTextFieldActionPerformed"/>
@@ -587,7 +587,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KpSeaFloorTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kp"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KpSeaFloorTextFieldActionPerformed"/>
@@ -605,7 +605,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KiSeaFloorTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ki"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KiSeaFloorTextFieldActionPerformed"/>
@@ -618,7 +618,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="KdSeaFloorTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kd"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KdSeaFloorTextFieldActionPerformed"/>

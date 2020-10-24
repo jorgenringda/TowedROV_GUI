@@ -1887,6 +1887,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private void jMenuItemConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConnectActionPerformed
 //        String ip = (String) JOptionPane.showInputDialog(this, "Enter IP", "Connection", JOptionPane.PLAIN_MESSAGE, null, null, data.getIP_Rov());
         try {
+            System.out.println("conenct");
             this.clientThreadExecutor = Executors.newScheduledThreadPool(4);
             clientThreadExecutor.scheduleAtFixedRate(client_ROV,
                     0, 100, TimeUnit.MILLISECONDS);
@@ -1895,6 +1896,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             clientThreadExecutor.scheduleAtFixedRate(udpServer,
                     0, 20, TimeUnit.MILLISECONDS);
             Thread.sleep(500);
+            System.out.println("conenct1");
             if (client_ROV.isConnected() && client_Camera.isConnected()) {
                 // ROV RPi:
                 clientThreadExecutor.scheduleAtFixedRate(client_Pinger,
@@ -1919,14 +1921,21 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 System.out.println("conenct2");
 
                 this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
+                System.out.println("conenct22");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
+                System.out.println("conenct222");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_d:" + data.getKdDepth());
+                System.out.println("conenct2222");
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
+                System.out.println("conenct222223");
+                //this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
+                System.out.println("conenct22222");
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_offsetROVdepth:" + data.getOffsetROVdepth());
+
+                //this.client_ROV.sendCommand("cmd_offsetROVdepth:" + data.getOffsetROVdepth());
+                System.out.println("conenct3");
                 jMenuConnect.setText("Connected 2/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/Calibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);
@@ -1936,6 +1945,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                         "Connected",
                         JOptionPane.PLAIN_MESSAGE);
             } else if (client_ROV.isConnected() && !client_Camera.isConnected()) {
+                System.out.println("conenct4");
                 // ROV RPi:
                 clientThreadExecutor.scheduleAtFixedRate(client_Pinger,
                         0, 1000, TimeUnit.MILLISECONDS);
@@ -1948,15 +1958,21 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 resetManualControlButton.setEnabled(true);
                 lockButton.setEnabled(true);
                 io.enableIO();
+                System.out.println("conenct5");
                 this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
+                System.out.println("conenct55");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
+                System.out.println("conenct555");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_d:" + data.getKdDepth());
+                System.out.println("conenct5555");
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
+                //this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
+                System.out.println("conenct55555");
                 Thread.sleep(10);
-                this.client_ROV.sendCommand("cmd_offsetROVdepth:" + data.getOffsetROVdepth());
+                //this.client_ROV.sendCommand("cmd_offsetROVdepth:" + data.getOffsetROVdepth());
+                System.out.println("conenct555555");
                 jMenuConnect.setText("Connected 1/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/NotCalibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);
@@ -1966,6 +1982,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                         "Connected 1/2",
                         JOptionPane.PLAIN_MESSAGE);
             } else if (!client_ROV.isConnected() && client_Camera.isConnected()) {
+                System.out.println("conenct6");
                 // Camera RPi:
                 lightSwitch_lbl.setEnabled(true);
                 lightSwitch.setEnabled(true);
@@ -1974,6 +1991,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 cameraPitchSlider.setEnabled(true);
                 cameraOffsetTextField.setEnabled(true);
                 delayTextField.setEnabled(true);
+                System.out.println("conenct7");
                 jMenuConnect.setText("Connected 1/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/NotCalibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);
