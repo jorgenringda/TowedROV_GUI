@@ -1,9 +1,9 @@
 /*
  * This code is for the bachelor thesis named "Towed-ROV".
  * The purpose is to build a ROV which will be towed behind a surface vessel
- * and act as a multi-sensor platform, were it shall be easy to place new 
+ * and act as a multi-sensor platform, were it shall be easy to place new
  * sensors. There will also be a video stream from the ROV.
- * 
+ *
  * The system consists of two Raspberry Pis in the ROV that is connected to
  * several Arduino micro controllers. These micro controllers are connected to
  * feedback from the actuators, the echo sounder and extra optional sensors.
@@ -24,7 +24,9 @@ import javax.swing.JFrame;
 /**
  * This frame lets the user control the different inputs and outputs. Sends a
  * new command whenever a button is pressed.
- *@author Towed ROV 2019 https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
+ *
+ * @author Towed ROV 2019
+ * https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
  */
 public class IOControlFrame extends javax.swing.JFrame implements Runnable, Observer {
 

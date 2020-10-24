@@ -26,7 +26,7 @@ import java.util.Map;
  * https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356 edited 2020, added
  * feedback for stepper positions
  */
-public class TCPClient implements Runnable {
+public class TCPClient extends Thread {
 
     boolean connectionResetError = false;
     private boolean connected = false;
@@ -198,8 +198,9 @@ public class TCPClient implements Runnable {
      */
     public void connect(String IP, int port) throws IOException {
         clientSocket = new Socket(IP, port);
-//        this.inputStream = clientSocket.getInputStream();
-//        this.outputStream = clientSocket.getOutputStream();
+        this.inputStream = clientSocket.getInputStream();
+        this.outputStream = clientSocket.getOutputStream();
+
         outToServer = new PrintWriter(
                 clientSocket.getOutputStream(), true);
         inFromServer = new BufferedReader(new InputStreamReader(
@@ -315,14 +316,13 @@ public class TCPClient implements Runnable {
         for (Map.Entry e : newDataList.entrySet()) {
             String key = (String) e.getKey();
             String value = (String) e.getValue();
-
             switch (key) {
                 // From ROV RPi:
-                case "Fb_stepperPSPos":
-                    data.setFb_stepperPSPos(Integer.parseInt(value));
+                case "Fb_wingPosSb":
+                    data.setWingAngleSB(Float.parseFloat(value));
                     break;
-                case "Fb_stepperSBPos":
-                    data.setFb_stepperSBPos(Integer.parseInt(value));
+                case "Fb_wingPosPort":
+                    data.setWingAnglePort(Float.parseFloat(value));
                     break;
                 case "Fb_rollAngle":
                     data.setRollAngle(Double.parseDouble(value));

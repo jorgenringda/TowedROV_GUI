@@ -34,6 +34,7 @@ public class NTNUSubseaGUI {
 //    private static Thread echoSounderThread;
 //    private static Thread ROVDummyThread;
 
+    private static Thread client_Rov;
     private static Thread InputControllerThread;
     private static Thread comPortFinderThread;
 
@@ -60,11 +61,14 @@ public class NTNUSubseaGUI {
         EchoSounderFrame sonar = new EchoSounderFrame(data);
         LogFileHandler lgh = new LogFileHandler(data);
         TCPpinger client_Pinger = new TCPpinger(IP_ROV, Port_ROV, data);
+        client_Rov = new TCPClient(IP_ROV, Port_ROV, data);
+
         TCPClient client_ROV = new TCPClient(IP_ROV, Port_ROV, data);
         TCPClient client_Camera = new TCPClient(IP_camera, Port_cameraCom, data);
         UDPServer stream = new UDPServer(Port_cameraStream, data);
         IOControlFrame io = new IOControlFrame(data, client_ROV);
         frame = new ROVFrame(sonar, data, io, client_Pinger, client_ROV, client_Camera, stream, sounder, lgh);
+        data.addObserver(frame);
         DataUpdater dataUpdater = new DataUpdater(client_ROV, client_Camera, data);
 
         ScheduledExecutorService executor
@@ -73,7 +77,7 @@ public class NTNUSubseaGUI {
         SwingUtilities.invokeLater(io);
         sonar.setVisible(false);
         data.addObserver(sonar);
-        data.addObserver(frame);
+
         data.addObserver(io);
         executor.scheduleAtFixedRate(lgh,
                 0, 100, TimeUnit.MILLISECONDS);

@@ -1825,7 +1825,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     }//GEN-LAST:event_wingAngPSPosBarStateChanged
 
     private void seafloorModeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seafloorModeButtonActionPerformed
-        double d = data.getDepthBeneathBoat();        
+        double d = data.getDepthBeneathBoat();
         targetDistanceTextField.setText(String.valueOf(d));
         setpointLabel.setText(String.valueOf(d));
         /* actuatorControlPS.setValue(127);
@@ -1878,8 +1878,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         setpointLabel.setBackground(new Color(255, 0, 0));
         manualControlButton.doClick();
         try {
-            this.client_ROV.sendCommand("cmd_targetMode:2");
-            this.client_ROV.sendCommand("cmd_stepper:1000");
+            this.client_ROV.sendCommand("cmd_emergencySurface");
         } catch (IOException ex) {
             System.out.println("IOException in emergencyStopButtonActionPerformed: " + ex.getMessage());
         }
@@ -2236,7 +2235,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
 
     private void manualControlButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_manualControlButtonActionPerformed
     {//GEN-HEADEREND:event_manualControlButtonActionPerformed
-        if (this.targetMode != 2) {            
+        if (this.targetMode != 2) {
             wingAngTextField.setEnabled(true);
             data.setManualMode(true);
             this.targetMode = 2;
@@ -2248,13 +2247,13 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             }
         } else {
             depthModeButton.doClick();
-            try{
+            try {
                 wingAngTextField.setText(0 + "°");
                 System.out.println("wingAng set to " + 0);
                 this.client_ROV.sendCommand("cmd_wingAng:" + 0);
-            }catch (IOException ex) {
-            System.out.println("IOException: " + ex.getMessage());
-        }
+            } catch (IOException ex) {
+                System.out.println("IOException: " + ex.getMessage());
+            }
         }
     }//GEN-LAST:event_manualControlButtonActionPerformed
 
@@ -2399,9 +2398,9 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     targetDistanceTextField.setValue(null);
                     targetDistanceTextField.setText("");
                     JOptionPane.showMessageDialog(this,
-                        "Input is invalid. (Max depth 50m)",
-                        "Input error",
-                        JOptionPane.ERROR_MESSAGE);
+                            "Input is invalid. (Max depth 50m)",
+                            "Input error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
 
             } else {
@@ -2438,9 +2437,9 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     wingAngTextField.setValue(null);
                     wingAngTextField.setText("");
                     JOptionPane.showMessageDialog(this,
-                        "Input is invalid. (Set a value ranging from -30 to 30)",
-                        "Input error",
-                        JOptionPane.ERROR_MESSAGE);
+                            "Input is invalid. (Set a value ranging from -30 to 30)",
+                            "Input error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
 
             } else {
@@ -2674,6 +2673,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     public void update(Observable o, Object arg) {
         //actuatorDutyCycleBar1.setValue(data.getBarValue());
         //System.out.println(data.getPitchAngle());
+        System.out.println("12345678");
         if (data.getVideoImage() != null) {
             this.showImage(data.getVideoImage());
         }
@@ -2706,15 +2706,15 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         seafloorDepthBoatLabel.setText("Beneath Boat: " + String.valueOf(df2.format(data.getDepthBeneathBoat())) + "m");
         seafloorDepthRovLabel.setText("Beneath ROV: " + data.getDepthBeneathRov() + "m");
         rovDepthLabel.setText("ROV Depth: " + data.getDepth() + "m");
-
+        System.out.println("dsfk12345sdkf");
         headingLabel.setText("Heading: " + data.getGPSAngle());
         longitudeLabel.setText("Longitude: " + data.getLongitude());
         latitudeLabel.setText("Latitude: " + data.getLatitude());
 
-        wingAnglePSPosLabel.setText("PS Angle: " + data.getWingAnglePS());
-        wingAngleSBPosLabel.setText("SB Angle: " + data.getWingAngleSB());
-        wingAngPSPosBar.setValue((int) data.getWingAnglePS());
-        wingAngleSBPosBar.setValue((int) data.getWingAngleSB());
+        wingAnglePSPosLabel.setText("Port Angle: " + data.getWingAnglePort());
+        wingAngleSBPosLabel.setText("SB Angle: " + data.getWingAngleSb());
+        wingAngPSPosBar.setValue((int) data.getWingAnglePort());
+        wingAngleSBPosBar.setValue((int) data.getWingAngleSb());
 
         if (data.isI2cError()) {
             i2cErrorLabel.setText("I²C: ERROR!");
@@ -2735,7 +2735,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         }
         outsideTempLabel.setText("Outside Temp: " + data.getOutsideTemp() + " C");
         insideTempLabel.setText("Inside Temp: " + data.getInsideTemp() + "C");
-        humidityLabel.setText("Rel. Humidity: " + data.getHumidity());
+        humidityLabel.setText("Rel. Humidity: " + data.getHumidity() + "%");
+        System.out.println("dsfksndfmskdmfksdkf");
         pressureLabel.setText("Pressure: " + (data.getPressure() + " mBar"));
         rovDepthLabel.setText("ROV Depth: " + data.getRovDepth() + "m");
 
