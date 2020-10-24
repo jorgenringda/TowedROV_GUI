@@ -132,6 +132,9 @@ public final class Data extends Observable {
     private String KpDepth = "1";
     private String KiDepth = "2";
     private String KdDepth = "3";
+    private String KpSeaFloor = "1";
+    private String KiSeaFloor = "2";
+    private String KdSeaFloor = "3";
     private String KpTrim = "1";
     private String KiTrim = "2";
     private String KdTrim = "3";
@@ -173,6 +176,9 @@ public final class Data extends Observable {
                 this.setKpDepth(br.readLine());
                 this.setKiDepth(br.readLine());
                 this.setKdDepth(br.readLine());
+                this.setKpSeaFloor(br.readLine());
+                this.setKiSeaFloor(br.readLine());
+                this.setKdSeaFloor(br.readLine());
                 this.setKpTrim(br.readLine());
                 this.setKiTrim(br.readLine());
                 this.setKdTrim(br.readLine());
@@ -193,6 +199,9 @@ public final class Data extends Observable {
                 this.setKpDepth("0");
                 this.setKiDepth("0");
                 this.setKdDepth("0");
+                this.setKpSeaFloor("0");
+                this.setKiSeaFloor("0");
+                this.setKdSeaFloor("0");
                 this.setKpTrim("0");
                 this.setKiTrim("0");
                 this.setKdTrim("0");
@@ -307,6 +316,60 @@ public final class Data extends Observable {
      */
     public synchronized String getKdDepth() {
         return KdDepth;
+    }
+    
+     /**
+     * Sets the KpSeaFloor parameter of the PID
+     *
+     * @param value the KpSeaFloor parameter of the PID
+     */
+    public void setKpSeaFloor(String value) {
+        this.KpSeaFloor = value;
+    }
+
+    /**
+     * Returns the KpSeaFloor parameter of the PID
+     *
+     * @return the KpSeaFloor parameter of the PID
+     */
+    public synchronized String getKpSeaFloor() {
+        return KpSeaFloor;
+    }
+
+    /**
+     * Sets the KiSeaFloor parameter of the PID
+     *
+     * @param value the KiSeaFloor parameter of the PID
+     */
+    public void setKiSeaFloor(String value) {
+        this.KiSeaFloor = value;
+    }
+
+    /**
+     * Returns the KiSeaFloor parameter of the PID
+     *
+     * @return the KiSeaFloor parameter of the PID
+     */
+    public synchronized String getKiSeaFloor() {
+        return KiSeaFloor;
+    }
+
+    /**
+     * Sets the KdSeaFloor parameter of the PID
+     *
+     * @param value the KdSeaFloor parameter of the PID
+     */
+    public void setKdSeaFloor(String value) {
+        this.KdSeaFloor = value;
+    }
+
+    /**
+     * Returns the KdSeaFloor parameter of the PID
+     *
+     * @return the KdSeaFloor parameter of the PID
+     */
+    public synchronized String getKdSeaFloor() {
+        return KdSeaFloor;
     }
 
     public void setKpTrim(String value) {
