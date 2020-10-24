@@ -151,7 +151,7 @@ public final class Data extends Observable {
     private boolean emergencyMode = false;
     private boolean streaming = false;
     private boolean manualMode = false;
-    private float wingAnglePS = 0;
+    private float wingAnglePort = 0;
     private float wingAngleSB = 0;
 
     /**
@@ -578,7 +578,7 @@ public final class Data extends Observable {
      * @return Current wing angle of the ROV
      */
     public synchronized float getWingAngle() {
-        return wingAnglePS;
+        return wingAngle;
     }
 
     /**
@@ -586,8 +586,8 @@ public final class Data extends Observable {
      *
      * @param angle Current wing angle of the ROV
      */
-    public synchronized void setWingAnglePS(float angle) {
-        wingAnglePS = angle;
+    public synchronized void setWingAnglePort(float angle) {
+        wingAnglePort = angle;
         setChanged();
         notifyObservers();
     }
@@ -597,8 +597,8 @@ public final class Data extends Observable {
      *
      * @return Current wing angle of the ROV
      */
-    public synchronized float getWingAnglePS() {
-        return wingAngle;
+    public synchronized float getWingAnglePort() {
+        return wingAnglePort;
     }
 
     /**
@@ -617,7 +617,7 @@ public final class Data extends Observable {
      *
      * @return Current wing angle of the ROV
      */
-    public synchronized float getWingAngleSB() {
+    public synchronized float getWingAngleSb() {
         return wingAngleSB;
     }
 
@@ -878,6 +878,8 @@ public final class Data extends Observable {
      */
     public void setOutsideTemp(double outsideTemp) {
         this.outsideTemp = outsideTemp;
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -896,6 +898,8 @@ public final class Data extends Observable {
      */
     public void setInsideTemp(double insideTemp) {
         this.insideTemp = insideTemp;
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -914,6 +918,8 @@ public final class Data extends Observable {
      */
     public void setHumidity(double humidity) {
         this.humidity = humidity;
+        setChanged();
+        notifyObservers();
     }
 
     /**
