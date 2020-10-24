@@ -44,6 +44,9 @@ public class OptionsFrame extends javax.swing.JFrame {
     private double KpDepth;
     private double KiDepth;
     private double KdDepth;
+    private double KpSeafloor;
+    private double KiSeafloor;
+    private double KdSeafloor;
     private double KpTrim;
     private double KiTrim;
     private double KdTrim;
@@ -124,6 +127,13 @@ public class OptionsFrame extends javax.swing.JFrame {
         KiTrimTextField = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         KdTrimTextField = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        KpSeaFloorTextField = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        KiSeaFloorTextField = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        KdSeaFloorTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Options");
@@ -192,18 +202,8 @@ public class OptionsFrame extends javax.swing.JFrame {
         jTextFieldChannel3.setText("Channel 3");
 
         jTextFieldChannel5.setText("Channel 5");
-        jTextFieldChannel5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldChannel5ActionPerformed(evt);
-            }
-        });
 
         jTextFieldChannel6.setText("Channel 6");
-        jTextFieldChannel6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldChannel6ActionPerformed(evt);
-            }
-        });
 
         jTextFieldChannel7.setText("Channel 7");
 
@@ -241,6 +241,11 @@ public class OptionsFrame extends javax.swing.JFrame {
         jLabel12.setText("Kd");
 
         KdDepthTextField.setText("Kd");
+        KdDepthTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KdDepthTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -258,6 +263,11 @@ public class OptionsFrame extends javax.swing.JFrame {
         jLabel15.setText("ROV Depth");
 
         offset2TextField.setText("0.00");
+        offset2TextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offset2TextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -275,10 +285,52 @@ public class OptionsFrame extends javax.swing.JFrame {
         jLabel18.setText("Ki");
 
         KiTrimTextField.setText("Ki");
+        KiTrimTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KiTrimTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel19.setText("Kd");
 
         KdTrimTextField.setText("Kd");
+        KdTrimTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KdTrimTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("PID Sea Floor:");
+        jLabel20.setToolTipText("");
+
+        KpSeaFloorTextField.setText("Kp");
+        KpSeaFloorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KpSeaFloorTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("Kp");
+
+        jLabel22.setText("Ki");
+
+        KiSeaFloorTextField.setText("Ki");
+        KiSeaFloorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KiSeaFloorTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Kd");
+
+        KdSeaFloorTextField.setText("Kd");
+        KdSeaFloorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KdSeaFloorTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,12 +396,26 @@ public class OptionsFrame extends javax.swing.JFrame {
                             .addComponent(jLabelIPHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(KpSeaFloorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(KiSeaFloorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(KdSeaFloorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel16))
-                                .addGap(20, 20, 20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel17)
@@ -374,18 +440,20 @@ public class OptionsFrame extends javax.swing.JFrame {
                                         .addGap(20, 20, 20)
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(KdDepthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(offset1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(offset2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(36, 36, 36))))
+                                        .addComponent(KdDepthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(61, 61, 61))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(offset1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(offset2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,7 +478,17 @@ public class OptionsFrame extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(KdSeaFloorTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(KiSeaFloorTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(KpSeaFloorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(KdTrimTextField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(KiTrimTextField, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -420,7 +498,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -461,7 +539,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                     .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonApply, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCanel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
@@ -484,6 +562,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             writer.write(KpDepthTextField.getText() + System.getProperty("line.separator"));
             writer.write(KiDepthTextField.getText() + System.getProperty("line.separator"));
             writer.write(KdDepthTextField.getText() + System.getProperty("line.separator"));
+            writer.write(KpSeaFloorTextField.getText() + System.getProperty("line.separator"));
+            writer.write(KiSeaFloorTextField.getText() + System.getProperty("line.separator"));
+            writer.write(KdSeaFloorTextField.getText() + System.getProperty("line.separator"));
             writer.write(KpTrimTextField.getText() + System.getProperty("line.separator"));
             writer.write(KiTrimTextField.getText() + System.getProperty("line.separator"));
             writer.write(KdTrimTextField.getText() + System.getProperty("line.separator"));
@@ -493,6 +574,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             data.setKpDepth(KpDepthTextField.getText());
             data.setKiDepth(KiDepthTextField.getText());
             data.setKdDepth(KdDepthTextField.getText());
+            data.setKpSeaFloor(KpSeaFloorTextField.getText());
+            data.setKiSeaFloor(KiSeaFloorTextField.getText());
+            data.setKdSeaFloor(KdSeaFloorTextField.getText());
             data.setKpTrim(KpTrimTextField.getText());
             data.setKiTrim(KiTrimTextField.getText());
             data.setKdTrim(KdTrimTextField.getText());
@@ -504,6 +588,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             this.client_ROV.sendCommand("cmd_pidDepth_p:" + KpDepthTextField.getText());
             this.client_ROV.sendCommand("cmd_pidDepth_i:" + KiDepthTextField.getText());
             this.client_ROV.sendCommand("cmd_pidDepth_d:" + KdDepthTextField.getText());
+            this.client_ROV.sendCommand("cmd_pidSeaFloor_p:" + KpSeaFloorTextField.getText());
+            this.client_ROV.sendCommand("cmd_pidSeaFloor_i:" + KiSeaFloorTextField.getText());
+            this.client_ROV.sendCommand("cmd_pidSeaFloor_d:" + KdSeaFloorTextField.getText());
             this.client_ROV.sendCommand("cmd_pidTrim_p:" + KpTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_pidTrim_i:" + KiTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_pidTrim_d:" + KdTrimTextField.getText());
@@ -539,6 +626,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             writer.write(KpDepthTextField.getText() + System.getProperty("line.separator"));
             writer.write(KiDepthTextField.getText() + System.getProperty("line.separator"));
             writer.write(KdDepthTextField.getText() + System.getProperty("line.separator"));
+            writer.write(KpSeaFloorTextField.getText() + System.getProperty("line.separator"));
+            writer.write(KiSeaFloorTextField.getText() + System.getProperty("line.separator"));
+            writer.write(KdSeaFloorTextField.getText() + System.getProperty("line.separator"));
             writer.write(KpTrimTextField.getText() + System.getProperty("line.separator"));
             writer.write(KiTrimTextField.getText() + System.getProperty("line.separator"));
             writer.write(KdTrimTextField.getText() + System.getProperty("line.separator"));
@@ -548,6 +638,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             data.setKpDepth(KpDepthTextField.getText());
             data.setKiDepth(KiDepthTextField.getText());
             data.setKdDepth(KdDepthTextField.getText());
+            data.setKpSeaFloor(KpSeaFloorTextField.getText());
+            data.setKiSeaFloor(KiSeaFloorTextField.getText());
+            data.setKdSeaFloor(KdSeaFloorTextField.getText());
             data.setKpTrim(KpTrimTextField.getText());
             data.setKiTrim(KiTrimTextField.getText());
             data.setKdTrim(KdTrimTextField.getText());
@@ -559,6 +652,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             this.client_ROV.sendCommand("cmd_pid_pD:" + KpDepthTextField.getText());
             this.client_ROV.sendCommand("cmd_pid_iD:" + KiDepthTextField.getText());
             this.client_ROV.sendCommand("cmd_pid_dD:" + KdDepthTextField.getText());
+            this.client_ROV.sendCommand("cmd_pidSeaFloor_p:" + KpSeaFloorTextField.getText());
+            this.client_ROV.sendCommand("cmd_pidSeaFloor_i:" + KiSeaFloorTextField.getText());
+            this.client_ROV.sendCommand("cmd_pidSeaFloor_d:" + KdSeaFloorTextField.getText());
             this.client_ROV.sendCommand("cmd_pid_pT:" + KpTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_pid_iT:" + KiTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_pid_dT:" + KdTrimTextField.getText());
@@ -599,6 +695,9 @@ public class OptionsFrame extends javax.swing.JFrame {
             KpDepthTextField.setText(br.readLine());
             KiDepthTextField.setText(br.readLine());
             KdDepthTextField.setText(br.readLine());
+            KpSeaFloorTextField.setText(br.readLine());
+            KiSeaFloorTextField.setText(br.readLine());
+            KdSeaFloorTextField.setText(br.readLine());
             KpTrimTextField.setText(br.readLine());
             KiTrimTextField.setText(br.readLine());
             KdTrimTextField.setText(br.readLine());
@@ -612,37 +711,60 @@ public class OptionsFrame extends javax.swing.JFrame {
     private void jButtonCanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCanelActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonCanelActionPerformed
-
-    private void jTextFieldChannel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChannel5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldChannel5ActionPerformed
-
-    private void jTextFieldChannel6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChannel6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldChannel6ActionPerformed
-
+                    
     private void KpDepthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KpDepthTextFieldActionPerformed
-        // TODO add your handling code here:
+        KiDepthTextField.requestFocusInWindow(); 
     }//GEN-LAST:event_KpDepthTextFieldActionPerformed
 
     private void KiDepthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KiDepthTextFieldActionPerformed
-        // TODO add your handling code here:
+        KdDepthTextField.requestFocusInWindow(); 
     }//GEN-LAST:event_KiDepthTextFieldActionPerformed
 
+    private void KdDepthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdDepthTextFieldActionPerformed
+        KpDepthTextField.requestFocusInWindow();
+    }//GEN-LAST:event_KdDepthTextFieldActionPerformed
+
+    private void KpSeaFloorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KpSeaFloorTextFieldActionPerformed
+        KiSeaFloorTextField.requestFocusInWindow();
+    }//GEN-LAST:event_KpSeaFloorTextFieldActionPerformed
+
+    private void KiSeaFloorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KiSeaFloorTextFieldActionPerformed
+        KdSeaFloorTextField.requestFocusInWindow();
+    }//GEN-LAST:event_KiSeaFloorTextFieldActionPerformed
+
+    private void KdSeaFloorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdSeaFloorTextFieldActionPerformed
+        KpSeaFloorTextField.requestFocusInWindow();
+    }//GEN-LAST:event_KdSeaFloorTextFieldActionPerformed
+
     private void KpTrimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KpTrimTextFieldActionPerformed
-        // TODO add your handling code here:
+        KiTrimTextField.requestFocusInWindow();
     }//GEN-LAST:event_KpTrimTextFieldActionPerformed
 
+    private void KiTrimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KiTrimTextFieldActionPerformed
+        KdTrimTextField.requestFocusInWindow();
+    }//GEN-LAST:event_KiTrimTextFieldActionPerformed
+
+    private void KdTrimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KdTrimTextFieldActionPerformed
+        KpTrimTextField.requestFocusInWindow();
+    }//GEN-LAST:event_KdTrimTextFieldActionPerformed
+
     private void offset1TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offset1TextFieldActionPerformed
-        // TODO add your handling code here:
+        offset2TextField.requestFocusInWindow();
     }//GEN-LAST:event_offset1TextFieldActionPerformed
+
+    private void offset2TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offset2TextFieldActionPerformed
+        offset1TextField.requestFocusInWindow();
+    }//GEN-LAST:event_offset2TextFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField KdDepthTextField;
+    private javax.swing.JTextField KdSeaFloorTextField;
     private javax.swing.JTextField KdTrimTextField;
     private javax.swing.JTextField KiDepthTextField;
+    private javax.swing.JTextField KiSeaFloorTextField;
     private javax.swing.JTextField KiTrimTextField;
     private javax.swing.JTextField KpDepthTextField;
+    private javax.swing.JTextField KpSeaFloorTextField;
     private javax.swing.JTextField KpTrimTextField;
     private javax.swing.JButton jButtonApply;
     private javax.swing.JButton jButtonCanel;
@@ -659,6 +781,10 @@ public class OptionsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
