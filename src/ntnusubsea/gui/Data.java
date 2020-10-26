@@ -151,6 +151,7 @@ public final class Data extends Observable {
     private boolean emergencyMode = false;
     private boolean streaming = false;
     private boolean manualMode = false;
+    private boolean kalmanOnOff = false;
     private float wingAnglePort = 0;
     private float wingAngleSB = 0;
 
@@ -317,8 +318,8 @@ public final class Data extends Observable {
     public synchronized String getKdDepth() {
         return KdDepth;
     }
-    
-     /**
+
+    /**
      * Sets the KpSeaFloor parameter of the PID
      *
      * @param value the KpSeaFloor parameter of the PID
@@ -409,6 +410,14 @@ public final class Data extends Observable {
      */
     public synchronized String getKdTrim() {
         return KdTrim;
+    }
+
+    public void setKalmanOnOff(boolean value) {
+        this.kalmanOnOff = value;
+    }
+
+    public boolean getKalmanOnOff() {
+        return kalmanOnOff;
     }
 
     /**
