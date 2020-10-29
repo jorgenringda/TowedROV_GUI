@@ -52,12 +52,12 @@ public class DataUpdater implements Runnable {
         if (client_Rov.isConnected()) {
             try {
                 client_Rov.sendCommand("fb_allData");
-                if (!data.comPortList.containsKey("ROVDummy")
-                        && !data.comPortList.containsValue("ROVDummy")) {
-                    client_Rov.sendCommand("cmd_rovDepth:" + data.getRovDepth());
-                } else {
-                    client_Rov.sendCommand("cmd_rovDepth:" + data.getTestDepth());
-                }
+//                if (!data.comPortList.containsKey("ROVDummy")
+//                        && !data.comPortList.containsValue("ROVDummy")) {
+//                    client_Rov.sendCommand("cmd_rovDepth:" + data.getRovDepth());
+//                } else {
+//                    client_Rov.sendCommand("cmd_rovDepth:" + data.getTestDepth());
+//                }
             } catch (IOException ex) {
                 System.out.println("Error while getting data from remote: " + ex.getMessage());
             }

@@ -1918,24 +1918,17 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 cameraPitchSlider.setEnabled(true);
                 cameraOffsetTextField.setEnabled(true);
                 delayTextField.setEnabled(true);
-                System.out.println("conenct2");
 
                 this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
-                System.out.println("conenct22");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
-                System.out.println("conenct222");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_d:" + data.getKdDepth());
-                System.out.println("conenct2222");
                 Thread.sleep(10);
-                System.out.println("conenct222223");
                 //this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
-                System.out.println("conenct22222");
                 Thread.sleep(10);
 
                 //this.client_ROV.sendCommand("cmd_offsetROVdepth:" + data.getOffsetROVdepth());
-                System.out.println("conenct3");
                 jMenuConnect.setText("Connected 2/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/Calibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);
@@ -1945,7 +1938,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                         "Connected",
                         JOptionPane.PLAIN_MESSAGE);
             } else if (client_ROV.isConnected() && !client_Camera.isConnected()) {
-                System.out.println("conenct4");
                 // ROV RPi:
                 clientThreadExecutor.scheduleAtFixedRate(client_Pinger,
                         0, 1000, TimeUnit.MILLISECONDS);
@@ -1958,21 +1950,15 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 resetManualControlButton.setEnabled(true);
                 lockButton.setEnabled(true);
                 io.enableIO();
-                System.out.println("conenct5");
                 this.client_ROV.sendCommand("cmd_pid_p:" + data.getKpDepth());
-                System.out.println("conenct55");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_i:" + data.getKiDepth());
-                System.out.println("conenct555");
                 Thread.sleep(10);
                 this.client_ROV.sendCommand("cmd_pid_d:" + data.getKdDepth());
-                System.out.println("conenct5555");
                 Thread.sleep(10);
                 //this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + data.getOffsetDepthBeneathROV());
-                System.out.println("conenct55555");
                 Thread.sleep(10);
                 //this.client_ROV.sendCommand("cmd_offsetROVdepth:" + data.getOffsetROVdepth());
-                System.out.println("conenct555555");
                 jMenuConnect.setText("Connected 1/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/NotCalibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);
@@ -1982,7 +1968,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                         "Connected 1/2",
                         JOptionPane.PLAIN_MESSAGE);
             } else if (!client_ROV.isConnected() && client_Camera.isConnected()) {
-                System.out.println("conenct6");
                 // Camera RPi:
                 lightSwitch_lbl.setEnabled(true);
                 lightSwitch.setEnabled(true);
@@ -1991,7 +1976,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                 cameraPitchSlider.setEnabled(true);
                 cameraOffsetTextField.setEnabled(true);
                 delayTextField.setEnabled(true);
-                System.out.println("conenct7");
                 jMenuConnect.setText("Connected 1/2");
                 jMenuConnect.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/ntnusubsea/gui/Images/NotCalibrated.gif"))));
                 jMenuItemDisconnect.setEnabled(true);
@@ -2251,11 +2235,13 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private void manualControlButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_manualControlButtonActionPerformed
     {//GEN-HEADEREND:event_manualControlButtonActionPerformed
         if (this.targetMode != 2) {
+            System.out.println("man press");
             wingAngTextField.setEnabled(true);
             data.setManualMode(true);
             this.targetMode = 2;
             System.out.println("Mode 2 - Manual wing control");
             try {
+                System.out.println("try to send to rpi");
                 this.client_ROV.sendCommand("cmd_targetMode:" + String.valueOf(this.targetMode));
             } catch (IOException ex) {
                 System.out.println("IOException: " + ex.getMessage());
@@ -2437,7 +2423,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     newSetpoint = Double.parseDouble(wingAngTextField.getText());
                 } catch (ClassCastException ex) {
                     Long newSetpointLong = Long.parseLong(wingAngTextField.getText());
-                    newSetpoint = newSetpointLong.doubleValue();
+                    newSetpoint = newSetpointLong.intValue();
                 }
 
                 if (newSetpoint <= 30 && newSetpoint >= -30) {
@@ -2688,7 +2674,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     public void update(Observable o, Object arg) {
         //actuatorDutyCycleBar1.setValue(data.getBarValue());
         //System.out.println(data.getPitchAngle());
-        System.out.println("12345678");
         if (data.getVideoImage() != null) {
             this.showImage(data.getVideoImage());
         }
@@ -2721,7 +2706,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         seafloorDepthBoatLabel.setText("Beneath Boat: " + String.valueOf(df2.format(data.getDepthBeneathBoat())) + "m");
         seafloorDepthRovLabel.setText("Beneath ROV: " + data.getDepthBeneathRov() + "m");
         rovDepthLabel.setText("ROV Depth: " + data.getDepth() + "m");
-        System.out.println("dsfk12345sdkf");
         headingLabel.setText("Heading: " + data.getGPSAngle());
         longitudeLabel.setText("Longitude: " + data.getLongitude());
         latitudeLabel.setText("Latitude: " + data.getLatitude());
@@ -2738,7 +2722,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         } else {
             i2cErrorLabel.setText("I²C: OK");
         }
-        System.out.print(data.getLeakStatus());
+        //System.out.print(data.getLeakStatus());
         if (data.getLeakStatus()) {
 
             leakLabel.setText("LEAK DETECTED!");
@@ -2751,7 +2735,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         outsideTempLabel.setText("Outside Temp: " + data.getOutsideTemp() + " C");
         insideTempLabel.setText("Inside Temp: " + data.getInsideTemp() + "C");
         humidityLabel.setText("Rel. Humidity: " + data.getHumidity() + "%");
-        System.out.println("dsfksndfmskdmfksdkf");
         pressureLabel.setText("Pressure: " + (data.getPressure() + " mBar"));
         rovDepthLabel.setText("ROV Depth: " + data.getRovDepth() + "m");
 
