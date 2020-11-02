@@ -107,6 +107,8 @@ public final class Data extends Observable {
     public ConcurrentHashMap<String, String> data = new ConcurrentHashMap<>();
     public List<String> rovDepthDataList = new ArrayList<>();
     public List<String> depthBeneathBoatDataList = new ArrayList<>();
+    public List<String> targetDistanceDataList = new ArrayList<>();
+    public List<String> rovDepthBeneathDataList = new ArrayList<>();
 
     private double timeBetweenBoatAndRov = 4.0;
     private double depthBeneathRov = 0;
@@ -144,6 +146,7 @@ public final class Data extends Observable {
     private boolean photoMode = false;
     private double photoModeDelay = 1.00;
     private double photoModeDelay_FB = 1.00;
+    private double targetDistance = 0;
     private int imageNumber = 0;
     private boolean imagesCleared = false;
     private int cameraPitchValue = 0;
@@ -528,6 +531,24 @@ public final class Data extends Observable {
         }
         setChanged();
         notifyObservers();
+    }
+
+    /**
+     * Updates the current pitch angle of the ROV and notifies observers
+     *
+     * @param angle Current pitch angle of the ROV
+     */
+    public synchronized void setTargetDistance(double targetDistance) {
+        this.targetDistance = targetDistance;
+    }
+
+    /**
+     * Retrieves the current pitch angle
+     *
+     * @return Current pitch angle of the ROV
+     */
+    public synchronized double getTargetDistance() {
+        return targetDistance;
     }
 
     /**
@@ -1634,6 +1655,35 @@ public final class Data extends Observable {
             depthBeneathBoatDataList.remove(0);
         }
         this.depthBeneathBoatDataList.add(time + ":" + value);
+
+    }
+
+    /**
+     * Updates the target distance data list, used for plotting
+     *
+     * @param time the time variable
+     * @param value the value at that time
+     */
+    public void updateTargetDistanceDataList(String time, String value) {
+        if (targetDistanceDataList.size() >= 300) {
+            targetDistanceDataList.remove(0);
+        }
+        this.targetDistanceDataList.add(time + ":" + value);
+
+    }
+
+    /**
+     * Updates the depth beneath the ROV data list
+     *
+     * @param time the time variable
+     * @param value the value at that time
+     */
+    public void updateRovDepthBeneathDataList(String time, String value) {
+        if (rovDepthBeneathDataList.size() >= 300) {
+            rovDepthBeneathDataList.remove(0);
+        }
+        this.rovDepthBeneathDataList.add(time + ":" + value);
+
     }
 
     /**

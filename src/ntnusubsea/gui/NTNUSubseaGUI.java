@@ -86,10 +86,9 @@ public class NTNUSubseaGUI {
         executor.scheduleAtFixedRate(dataUpdater,
                 1000, 100, TimeUnit.MILLISECONDS);
 
-        comPortFinderThread = new Thread(new ComPortFinder(sdh, data));
-        comPortFinderThread.start();
-        comPortFinderThread.setName("ComPortFinder");
-
+//        comPortFinderThread = new Thread(new ComPortFinder(sdh, data));
+//        comPortFinderThread.start();
+//        comPortFinderThread.setName("ComPortFinder");
 //        // Start searching for com ports:
 //        long timeDifference = 0;
 //        long lastTime = 0;

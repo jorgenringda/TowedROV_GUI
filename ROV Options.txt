@@ -8,9 +8,9 @@ Extra lights
 Water sample
 NA
 NA
-3
-0
-0
+1
+0.1
+1
 8
 8
 3

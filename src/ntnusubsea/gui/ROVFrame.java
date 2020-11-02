@@ -1839,7 +1839,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             data.setManualMode(false);
             try {
                 this.client_ROV.sendCommand("cmd_targetMode:" + String.valueOf(this.targetMode));
-                this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(d));
+                //this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(d));
             } catch (IOException ex) {
                 System.out.println("IOException: " + ex.getMessage());
             }
@@ -2105,7 +2105,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             System.out.println("Mode 0 - Depth");
             try {
                 this.client_ROV.sendCommand("cmd_targetMode:" + String.valueOf(this.targetMode));
-                this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(d));
+//                this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(d));
             } catch (IOException ex) {
                 System.out.println("IOException: " + ex.getMessage());
             }
@@ -2243,18 +2243,15 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             try {
                 System.out.println("try to send to rpi");
                 this.client_ROV.sendCommand("cmd_targetMode:" + String.valueOf(this.targetMode));
+                TimeUnit.MILLISECONDS.sleep(1000);
             } catch (IOException ex) {
                 System.out.println("IOException: " + ex.getMessage());
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ROVFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             depthModeButton.doClick();
-            try {
-                wingAngTextField.setText(0 + "°");
-                System.out.println("wingAng set to " + 0);
-                this.client_ROV.sendCommand("cmd_wingAng:" + 0);
-            } catch (IOException ex) {
-                System.out.println("IOException: " + ex.getMessage());
-            }
+            wingAngTextField.setText(0 + "°");
         }
     }//GEN-LAST:event_manualControlButtonActionPerformed
 
@@ -2395,6 +2392,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     setpointLabel.setText("Current setpoint: " + newSetpoint + "m");
                     System.out.println("targetDistance set to " + String.valueOf(newSetpoint));
                     this.client_ROV.sendCommand("cmd_targetDistance:" + String.valueOf(newSetpoint));
+                    data.setTargetDistance(newSetpoint);
                 } else {
                     targetDistanceTextField.setValue(null);
                     targetDistanceTextField.setText("");

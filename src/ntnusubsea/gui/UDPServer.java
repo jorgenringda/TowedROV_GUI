@@ -70,7 +70,8 @@ public class UDPServer implements Runnable {
             Date today = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
             String time = dateFormat.format(today);
-            photoDirectory = new File("D://TowedRovPicture/" + time + "/");
+            photoDirectory = new File("C://TowedRovPicture/" + time + "/");
+
         } catch (Exception e) {
             System.out.println("Error setting up UDP server: " + e.getMessage());
         }
