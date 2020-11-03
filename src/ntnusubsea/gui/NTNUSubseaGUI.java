@@ -59,6 +59,7 @@ public class NTNUSubseaGUI {
         Sounder sounder = new Sounder();
         SerialDataHandler sdh = new SerialDataHandler(data);
         EchoSounderFrame sonar = new EchoSounderFrame(data);
+        RollPlot plot = new RollPlot(data);
         LogFileHandler lgh = new LogFileHandler(data);
         TCPpinger client_Pinger = new TCPpinger(IP_ROV, Port_ROV, data);
         client_Rov = new TCPClient(IP_ROV, Port_ROV, data);
@@ -67,7 +68,7 @@ public class NTNUSubseaGUI {
         TCPClient client_Camera = new TCPClient(IP_camera, Port_cameraCom, data);
         UDPServer stream = new UDPServer(Port_cameraStream, data);
         IOControlFrame io = new IOControlFrame(data, client_ROV);
-        frame = new ROVFrame(sonar, data, io, client_Pinger, client_ROV, client_Camera, stream, sounder, lgh);
+        frame = new ROVFrame(sonar, plot, data, io, client_Pinger, client_ROV, client_Camera, stream, sounder, lgh);
         data.addObserver(frame);
         DataUpdater dataUpdater = new DataUpdater(client_ROV, client_Camera, data);
 

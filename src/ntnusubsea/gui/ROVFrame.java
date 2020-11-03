@@ -56,6 +56,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private Double setpoint = 0.00;
     private int targetMode = 0;
     private EchoSounderFrame echoSounder;
+
+    private RollPlot rollPlot;
     private OptionsFrame options;
     private Thread sounderThread;
     private TCPpinger client_Pinger;
@@ -88,12 +90,13 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
      * @param udpServer the camera UDP server
      * @param lgh the log file handler
      */
-    public ROVFrame(EchoSounderFrame echoSounder, Data data, IOControlFrame io, TCPpinger client_Pinger, TCPClient client_ROV, TCPClient client_Camera, UDPServer udpServer, Sounder sounder, LogFileHandler lgh) {
+    public ROVFrame(EchoSounderFrame echoSounder, RollPlot rollPort, Data data, IOControlFrame io, TCPpinger client_Pinger, TCPClient client_ROV, TCPClient client_Camera, UDPServer udpServer, Sounder sounder, LogFileHandler lgh) {
         this.clientThreadExecutor = null;
         this.encoderThreadExecutor = null;
         initComponents();
         this.data = data;
         this.echoSounder = echoSounder;
+        this.rollPlot = rollPlot;
         this.client_Pinger = client_Pinger;
         this.client_ROV = client_ROV;
         this.client_Camera = client_Camera;
@@ -313,6 +316,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         jMenuBar = new javax.swing.JMenuBar();
         jMenuTools = new javax.swing.JMenu();
         jMenuEchosounder = new javax.swing.JMenuItem();
+        jMenuRollPlot = new javax.swing.JMenuItem();
         jMenuIOController = new javax.swing.JMenuItem();
         jMenuOptions = new javax.swing.JMenuItem();
         jMenuItemExit = new javax.swing.JMenuItem();
@@ -1070,7 +1074,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     .addComponent(cameraControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emergencyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(depthPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(lightPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1645,6 +1649,14 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             }
         });
         jMenuTools.add(jMenuEchosounder);
+
+        jMenuRollPlot.setText("Roll Plot");
+        jMenuRollPlot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRollPlotActionPerformed(evt);
+            }
+        });
+        jMenuTools.add(jMenuRollPlot);
 
         jMenuIOController.setText("I/O Controller");
         jMenuIOController.addActionListener(new java.awt.event.ActionListener() {
@@ -2451,6 +2463,10 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         }
     }//GEN-LAST:event_wingAngTextFieldActionPerformed
 
+    private void jMenuRollPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRollPlotActionPerformed
+        rollPlot.setVisible(true);
+    }//GEN-LAST:event_jMenuRollPlotActionPerformed
+
     Action exitFullscreenAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
             exitFullscreenButton.doClick();
@@ -2585,6 +2601,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private javax.swing.JMenu jMenuLogger;
     private javax.swing.JMenuItem jMenuOptions;
     private javax.swing.JMenu jMenuPing;
+    private javax.swing.JMenuItem jMenuRollPlot;
     private javax.swing.JMenu jMenuRovReady;
     private javax.swing.JMenu jMenuTools;
     private javax.swing.JMenu jMenuVoltage;
