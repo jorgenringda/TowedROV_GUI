@@ -109,6 +109,8 @@ public final class Data extends Observable {
     public List<String> depthBeneathBoatDataList = new ArrayList<>();
     public List<String> targetDistanceDataList = new ArrayList<>();
     public List<String> rovDepthBeneathDataList = new ArrayList<>();
+    public List<String> rollDataList = new ArrayList<>();
+    public List<String> pitchDataList = new ArrayList<>();
 
     private double timeBetweenBoatAndRov = 4.0;
     private double depthBeneathRov = 0;
@@ -1683,6 +1685,34 @@ public final class Data extends Observable {
             rovDepthBeneathDataList.remove(0);
         }
         this.rovDepthBeneathDataList.add(time + ":" + value);
+
+    }
+
+    /**
+     * Updates the rov of ROV data list
+     *
+     * @param time the time variable
+     * @param value the value at that time
+     */
+    public void updateRollDataList(String time, String value) {
+        if (rollDataList.size() >= 300) {
+            rollDataList.remove(0);
+        }
+        this.rollDataList.add(time + ":" + value);
+
+    }
+
+    /**
+     * Updates the pitch of ROV data list
+     *
+     * @param time the time variable
+     * @param value the value at that time
+     */
+    public void updatePitchDataList(String time, String value) {
+        if (pitchDataList.size() >= 300) {
+            pitchDataList.remove(0);
+        }
+        this.pitchDataList.add(time + ":" + value);
 
     }
 

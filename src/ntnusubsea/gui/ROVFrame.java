@@ -81,6 +81,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
      * Creates new form ROVFrame
      *
      * @param echoSounder Echo sounder frame to show graphs
+     * @param rollPlot
      * @param data Data containing shared variables
      * @param client_Pinger the ping TCP client
      * @param io I/O frame to control inputs and outputs
@@ -90,7 +91,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
      * @param udpServer the camera UDP server
      * @param lgh the log file handler
      */
-    public ROVFrame(EchoSounderFrame echoSounder, RollPlot rollPort, Data data, IOControlFrame io, TCPpinger client_Pinger, TCPClient client_ROV, TCPClient client_Camera, UDPServer udpServer, Sounder sounder, LogFileHandler lgh) {
+    public ROVFrame(EchoSounderFrame echoSounder, RollPlot rollPlot, Data data, IOControlFrame io, TCPpinger client_Pinger, TCPClient client_ROV, TCPClient client_Camera, UDPServer udpServer, Sounder sounder, LogFileHandler lgh) {
         this.clientThreadExecutor = null;
         this.encoderThreadExecutor = null;
         initComponents();

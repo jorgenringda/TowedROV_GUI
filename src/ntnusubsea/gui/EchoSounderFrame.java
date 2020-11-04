@@ -310,38 +310,37 @@ public class EchoSounderFrame extends javax.swing.JFrame implements Runnable, Ob
             }
             time = time + 0.1;
             time2 = time + data.getTimeBetweenBoatAndRov();
-//            rovDepthValue = String.valueOf(df.format(-data.getRovDepth()));
-//            depthBeneathBoatValue = String.valueOf(df.format(-data.getDepthBeneathBoat()));
+            rovDepthValue = String.valueOf(df.format(data.getRovDepth()));
+            depthBeneathBoatValue = String.valueOf(df.format(data.getDepthBeneathBoat()));
             targetDistance = String.valueOf(df.format(data.getTargetDistance()));
 
             //-------------------------------------------------------------------------
-            // COMMENT OUT THIS SECTION AND UNCOMMENT THE TWO LINES ABOVE TO GET REAL DATA FROM THE ROV
-            counter = (counter + amount) * 1.05;
-            counter2 = counter2 + amount2;
-
-            depthBeneathBoatValue = String.valueOf(df.format(counter2));
-            rovDepthValue = String.valueOf(df.format(counter));
-            rovDepthBeneath = String.valueOf(df.format(counter + 20));
-
-            if (counter >= 22.0) {
-                counter = 20.0;
-            }
-            if (counter >= 20.0) {
-                amount = +1.0;
-            } else if (counter <= 0.0) {
-                amount = -1.0;
-            }
-
-            if (counter2 >= 27.0) {
-                counter2 = 25.0;
-            }
-            if (counter2 >= 26.0) {
-                amount2 = 0.1;
-            } else if (counter2 <= 24.0) {
-                amount2 = -0.1;
-            }
+//            // COMMENT OUT THIS SECTION AND UNCOMMENT THE TWO LINES ABOVE TO GET REAL DATA FROM THE ROV
+//            counter = (counter + amount) * 1.05;
+//            counter2 = counter2 + amount2;
+//
+//            depthBeneathBoatValue = String.valueOf(df.format(counter2));
+//            rovDepthValue = String.valueOf(df.format(counter));
+//            rovDepthBeneath = String.valueOf(df.format(counter + 20));
+//
+//            if (counter >= 22.0) {
+//                counter = 20.0;
+//            }
+//            if (counter >= 20.0) {
+//                amount = +1.0;
+//            } else if (counter <= 0.0) {
+//                amount = -1.0;
+//            }
+//
+//            if (counter2 >= 27.0) {
+//                counter2 = 25.0;
+//            }
+//            if (counter2 >= 26.0) {
+//                amount2 = 0.1;
+//            } else if (counter2 <= 24.0) {
+//                amount2 = -0.1;
+//            }
             // -----------------------------------------------------------------------
-
             try {
 
                 XYDataset tt = createDatasetLive();
