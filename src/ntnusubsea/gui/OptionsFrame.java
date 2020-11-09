@@ -135,6 +135,8 @@ public class OptionsFrame extends javax.swing.JFrame {
         KdSeaFloorTextField = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         kalmanSwitch = new javax.swing.JToggleButton();
+        processNoiseTextField = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -355,6 +357,15 @@ public class OptionsFrame extends javax.swing.JFrame {
             }
         });
 
+        processNoiseTextField.setText("0");
+        processNoiseTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processNoiseTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("Process Noise");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -402,7 +413,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabelChannelsHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(340, 468, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -459,7 +470,10 @@ public class OptionsFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel25)
-                                .addGap(159, 159, 159))
+                                .addGap(97, 97, 97)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(processNoiseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -475,7 +489,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(KdTrimTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(74, 74, 74)
                                 .addComponent(kalmanSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -526,11 +540,15 @@ public class OptionsFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11))
+                        .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kalmanSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(processNoiseTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(kalmanSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -577,7 +595,7 @@ public class OptionsFrame extends javax.swing.JFrame {
                     .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonApply, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCanel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -605,6 +623,7 @@ public class OptionsFrame extends javax.swing.JFrame {
             writer.write(KdTrimTextField.getText() + System.getProperty("line.separator"));
             writer.write(offset1TextField.getText() + System.getProperty("line.separator"));
             writer.write(offset2TextField.getText() + System.getProperty("line.separator"));
+            writer.write(processNoiseTextField.getText() + System.getProperty("line.separator"));
 
             data.setKpDepth(KpDepthTextField.getText());
             data.setKiDepth(KiDepthTextField.getText());
@@ -612,6 +631,7 @@ public class OptionsFrame extends javax.swing.JFrame {
             data.setKpTrim(KpTrimTextField.getText());
             data.setKiTrim(KiTrimTextField.getText());
             data.setKdTrim(KdTrimTextField.getText());
+            data.setKdTrim(processNoiseTextField.getText());
             data.setOffsetDepthBeneathROV(offset1TextField.getText());
             data.setOffsetROVdepth(offset2TextField.getText());
             data.setIP_Rov(jTextFieldIP_Rov.getText());
@@ -625,6 +645,7 @@ public class OptionsFrame extends javax.swing.JFrame {
             this.client_ROV.sendCommand("cmd_pidTrim_d:" + KdTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + offset1TextField.getText());
             this.client_ROV.sendCommand("cmd_offsetROVdepth:" + offset2TextField.getText());
+            this.client_ROV.sendCommand("cmd_kalmanProcessNoise:" + processNoiseTextField.getText());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -660,6 +681,7 @@ public class OptionsFrame extends javax.swing.JFrame {
             writer.write(KdTrimTextField.getText() + System.getProperty("line.separator"));
             writer.write(offset1TextField.getText() + System.getProperty("line.separator"));
             writer.write(offset2TextField.getText() + System.getProperty("line.separator"));
+            writer.write(processNoiseTextField.getText() + System.getProperty("line.separator"));
 
             data.setKpDepth(KpDepthTextField.getText());
             data.setKiDepth(KiDepthTextField.getText());
@@ -667,6 +689,7 @@ public class OptionsFrame extends javax.swing.JFrame {
             data.setKpTrim(KpTrimTextField.getText());
             data.setKiTrim(KiTrimTextField.getText());
             data.setKdTrim(KdTrimTextField.getText());
+            data.setKdTrim(processNoiseTextField.getText());
             data.setOffsetDepthBeneathROV(offset1TextField.getText());
             data.setOffsetROVdepth(offset2TextField.getText());
             data.setIP_Rov(jTextFieldIP_Rov.getText());
@@ -680,6 +703,7 @@ public class OptionsFrame extends javax.swing.JFrame {
             this.client_ROV.sendCommand("cmd_pid_dT:" + KdTrimTextField.getText());
             this.client_ROV.sendCommand("cmd_offsetDepthBeneathROV:" + offset1TextField.getText());
             this.client_ROV.sendCommand("cmd_offsetROVdepth:" + offset2TextField.getText());
+            this.client_ROV.sendCommand("cmd_kalmanProcessNoise:" + processNoiseTextField.getText());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -780,6 +804,10 @@ public class OptionsFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_kalmanSwitchActionPerformed
 
+    private void processNoiseTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processNoiseTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_processNoiseTextFieldActionPerformed
+
     private void KdTrimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -825,6 +853,7 @@ public class OptionsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -850,5 +879,6 @@ public class OptionsFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton kalmanSwitch;
     private javax.swing.JTextField offset1TextField;
     private javax.swing.JTextField offset2TextField;
+    private javax.swing.JTextField processNoiseTextField;
     // End of variables declaration//GEN-END:variables
 }
