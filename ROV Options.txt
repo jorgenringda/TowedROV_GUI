@@ -9,6 +9,7 @@ Water sample
 NA
 NA
 <<<<<<< HEAD
+<<<<<<< HEAD
 10
 
 
@@ -17,12 +18,17 @@ NA
 0
 0
 =======
+=======
+>>>>>>> parent of b75d94c... y
 1
 0.1
 1
 8
 8
 3
+<<<<<<< HEAD
+>>>>>>> parent of b75d94c... y
+=======
 >>>>>>> parent of b75d94c... y
 0
 0
