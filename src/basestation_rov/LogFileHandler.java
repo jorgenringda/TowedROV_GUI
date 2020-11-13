@@ -152,8 +152,8 @@ public class LogFileHandler implements Runnable {
 
                     outputWriterData.append("Point,Time,Roll,Pitch,Depth,"
                             + "DepthToSeaFloor,ROV_Depth,WingAngleSB,"
-                            + "WingAnglePort,ActuatorPS_command,"
-                            + "ActuatorSB_command,Voltage,Emergency, outsideTemp,"
+                            + "WingAnglePort,setPoint,"
+                            + "Voltage,Emergency, outsideTemp,"
                             + "insideTempCameraHouse, humidity, tempElBoxFromt,"
                             + "tempElBoxRear, I2CError, LeakDetection");
                     outputWriterData.flush();
@@ -299,10 +299,9 @@ public class LogFileHandler implements Runnable {
                     + String.valueOf(data.getDepthBeneathBoat()) + ","
                     + String.valueOf(data.getDepthBeneathRov()) + ","
                     + String.valueOf(data.getRovDepth()) + ","
-                    + String.valueOf(data.getFb_stepperPSPos()) + ","
-                    + String.valueOf(data.getFb_stepperSBPos()) + ","
                     + String.valueOf(data.getWingAngleSb()) + ","
                     + String.valueOf(data.getWingAnglePort()) + ","
+                    + String.valueOf(data.getTargetDistance()) + ","
                     + String.valueOf(data.getVoltage()) + ","
                     + String.valueOf(data.getOutsideTemp()) + ","
                     + String.valueOf(data.getInsideTemp()) + ","
