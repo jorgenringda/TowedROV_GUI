@@ -10,6 +10,7 @@ NA
 NA
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 10
 
 
@@ -20,6 +21,8 @@ NA
 =======
 =======
 >>>>>>> parent of b75d94c... y
+=======
+>>>>>>> parent of b75d94c... y
 1
 0.1
 1
@@ -27,6 +30,9 @@ NA
 8
 3
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b75d94c... y
+=======
 >>>>>>> parent of b75d94c... y
 =======
 >>>>>>> parent of b75d94c... y
