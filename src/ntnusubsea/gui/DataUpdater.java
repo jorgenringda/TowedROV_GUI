@@ -28,6 +28,7 @@ public class DataUpdater implements Runnable {
     private TCPClient client_Rov;
     private TCPClient client_Camera;
     private Data data;
+    private double lastPitch;
 
     /**
      * Creates an instance of the DataUpdater class.
@@ -66,7 +67,9 @@ public class DataUpdater implements Runnable {
         if (client_Camera.isConnected()) {
             try {
                 client_Camera.sendCommand("getData");
-                System.out.println("camcommandsent");
+                if (this.lastPitch != data.getPitchAngle()) {
+                    client_Camera.sendCommand("Pitch:" + data.getPitchAngle());
+                }
             } catch (IOException ex) {
                 System.out.println("Error while getting data from remote: " + ex.getMessage());
             }

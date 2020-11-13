@@ -80,7 +80,6 @@ public class NTNUSubseaGUI {
         data.addObserver(sonar);
         rovRotationPlot.setVisible(false);
         data.addObserver(rovRotationPlot);
-
         data.addObserver(io);
         executor.scheduleAtFixedRate(lgh,
                 0, 100, TimeUnit.MILLISECONDS);

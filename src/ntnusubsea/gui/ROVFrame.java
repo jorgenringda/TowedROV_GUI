@@ -1909,7 +1909,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private void jMenuItemConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConnectActionPerformed
 //        String ip = (String) JOptionPane.showInputDialog(this, "Enter IP", "Connection", JOptionPane.PLAIN_MESSAGE, null, null, data.getIP_Rov());
         try {
-            System.out.println("conenct");
             this.clientThreadExecutor = Executors.newScheduledThreadPool(4);
             clientThreadExecutor.scheduleAtFixedRate(client_ROV,
                     0, 100, TimeUnit.MILLISECONDS);
@@ -1918,7 +1917,6 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
             clientThreadExecutor.scheduleAtFixedRate(udpServer,
                     0, 20, TimeUnit.MILLISECONDS);
             Thread.sleep(500);
-            System.out.println("conenct1");
             if (client_ROV.isConnected() && client_Camera.isConnected()) {
                 // ROV RPi:
                 clientThreadExecutor.scheduleAtFixedRate(client_Pinger,

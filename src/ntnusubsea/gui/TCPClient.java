@@ -316,7 +316,7 @@ public class TCPClient extends Thread {
         for (Map.Entry e : newDataList.entrySet()) {
             String key = (String) e.getKey();
             String value = (String) e.getValue();
-            System.out.println(key);
+//            System.out.println (key);
             switch (key) {
                 // From ROV RPi:
                 case "Fb_wingPosSb":

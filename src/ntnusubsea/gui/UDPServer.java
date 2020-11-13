@@ -137,7 +137,7 @@ public class UDPServer implements Runnable {
 
             //Creates new DatagramSocket for reciving DatagramPackets
             //Creating new DatagramPacket form the packet recived on the videoSocket
-            byte[] receivedData = new byte[60000];
+            byte[] receivedData = new byte[120000];
             receivePacket = new DatagramPacket(receivedData,
                     receivedData.length);
             this.connected = true;
@@ -153,11 +153,10 @@ public class UDPServer implements Runnable {
                 if (debug) {
                     System.out.println("Videopackage received");
                 }
-                //Reads incomming byte array into a BufferedImage
+//                Reads incomming byte array into a BufferedImage
                 ByteArrayInputStream bais = new ByteArrayInputStream(receivedData);
                 videoImage = ImageIO.read(bais);
                 data.setVideoImage(videoImage);
-
                 if (lastPhotoMode && (endTime - startTime) > 500) {
                     data.increaseImageNumberByOne();
                 }
