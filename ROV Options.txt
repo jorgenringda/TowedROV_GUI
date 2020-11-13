@@ -8,6 +8,7 @@ Extra lights
 Water sample
 NA
 NA
+<<<<<<< HEAD
 10
 
 
@@ -15,5 +16,13 @@ NA
 0
 0
 0
+=======
+1
+0.1
+1
+8
+8
+3
+>>>>>>> parent of b75d94c... y
 0
 0
