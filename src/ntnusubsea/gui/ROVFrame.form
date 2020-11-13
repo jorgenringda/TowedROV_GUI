@@ -1696,8 +1696,8 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="72" green="b8" red="61" type="rgb"/>
                         </Property>
-                        <Property name="maximum" type="int" value="30"/>
-                        <Property name="minimum" type="int" value="-30"/>
+                        <Property name="maximum" type="int" value="45"/>
+                        <Property name="minimum" type="int" value="-45"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
@@ -1783,8 +1783,8 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="72" green="b8" red="61" type="rgb"/>
                         </Property>
-                        <Property name="maximum" type="int" value="30"/>
-                        <Property name="minimum" type="int" value="-30"/>
+                        <Property name="maximum" type="int" value="45"/>
+                        <Property name="minimum" type="int" value="-45"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
@@ -2493,6 +2493,9 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="opaque" type="boolean" value="true"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="wingAnglePSPosLabelAncestorAdded"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="wingAngleSBPosLabel">
                               <Properties>

@@ -1096,8 +1096,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
 
         wingAngPSPosBar.setBackground(new java.awt.Color(42, 48, 57));
         wingAngPSPosBar.setForeground(new java.awt.Color(97, 184, 114));
-        wingAngPSPosBar.setMaximum(30);
-        wingAngPSPosBar.setMinimum(-30);
+        wingAngPSPosBar.setMaximum(45);
+        wingAngPSPosBar.setMinimum(-45);
         wingAngPSPosBar.setToolTipText("");
         wingAngPSPosBar.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1142,8 +1142,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
 
         wingAngleSBPosBar.setBackground(new java.awt.Color(42, 48, 57));
         wingAngleSBPosBar.setForeground(new java.awt.Color(97, 184, 114));
-        wingAngleSBPosBar.setMaximum(30);
-        wingAngleSBPosBar.setMinimum(-30);
+        wingAngleSBPosBar.setMaximum(45);
+        wingAngleSBPosBar.setMinimum(-45);
         wingAngleSBPosBar.setToolTipText("");
         wingAngleSBPosBar.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -1468,6 +1468,15 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         wingAnglePSPosLabel.setText("PS Wing Angle: 0.1");
         wingAnglePSPosLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         wingAnglePSPosLabel.setOpaque(true);
+        wingAnglePSPosLabel.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                wingAnglePSPosLabelAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         wingAngleSBPosLabel.setBackground(new java.awt.Color(39, 46, 54));
         wingAngleSBPosLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -2437,7 +2446,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     newSetpoint = newSetpointLong.intValue();
                 }
 
-                if (newSetpoint <= 30 && newSetpoint >= -30) {
+                if (newSetpoint <= 45 && newSetpoint >= -45) {
                     //wingLabel.setBackground(new Color(39, 44, 50));
                     //                    previousSetpoint = setpoint;
                     //                    setpoint = newSetpoint;
@@ -2449,7 +2458,7 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
                     wingAngTextField.setValue(null);
                     wingAngTextField.setText("");
                     JOptionPane.showMessageDialog(this,
-                            "Input is invalid. (Set a value ranging from -30 to 30)",
+                            "Input is invalid. (Set a value ranging from -45 to 45)",
                             "Input error",
                             JOptionPane.ERROR_MESSAGE);
                 }
@@ -2467,6 +2476,10 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
     private void jMenuRollPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRollPlotActionPerformed
         rollPlot.setVisible(true);
     }//GEN-LAST:event_jMenuRollPlotActionPerformed
+
+    private void wingAnglePSPosLabelAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_wingAnglePSPosLabelAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wingAnglePSPosLabelAncestorAdded
 
     Action exitFullscreenAction = new AbstractAction() {
         public void actionPerformed(ActionEvent e) {
@@ -2727,8 +2740,8 @@ public class ROVFrame extends javax.swing.JFrame implements Runnable, Observer {
         latitudeLabel.setText("Latitude: " + data.getLatitude());
 
         wingAnglePSPosLabel.setText("Port Angle: " + data.getWingAnglePort());
-        wingAngleSBPosLabel.setText("SB Angle: " + data.getWingAngleSb());
         wingAngPSPosBar.setValue((int) data.getWingAnglePort());
+        wingAngleSBPosLabel.setText("SB Angle: " + data.getWingAngleSb());
         wingAngleSBPosBar.setValue((int) data.getWingAngleSb());
 
         if (data.isI2cError()) {

@@ -1,9 +1,9 @@
 /*
  * This code is for the bachelor thesis named "Towed-ROV".
  * The purpose is to build a ROV which will be towed behind a surface vessel
- * and act as a multi-sensor platform, were it shall be easy to place new 
+ * and act as a multi-sensor platform, were it shall be easy to place new
  * sensors. There will also be a video stream from the ROV.
- * 
+ *
  * The system consists of two Raspberry Pis in the ROV that is connected to
  * several Arduino micro controllers. These micro controllers are connected to
  * feedback from the actuators, the echo sounder and extra optional sensors.
@@ -24,7 +24,9 @@ import org.apache.commons.io.FileUtils;
 /**
  * This class is responsible for logging the data, ship position, exif and
  * telementry to seperate .csv files.
- * @author Towed ROV 2019 https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
+ *
+ * @author Towed ROV 2019
+ * https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/2564356
  */
 public class LogFileHandler implements Runnable {
 
@@ -149,8 +151,8 @@ public class LogFileHandler implements Runnable {
                     outputWriterShipPos.flush();
 
                     outputWriterData.append("Point,Time,Roll,Pitch,Depth,"
-                            + "DepthToSeaFloor,ROV_Depth,ActuatorPS_feedback,"
-                            + "ActuatorSB_feedback,ActuatorPS_command,"
+                            + "DepthToSeaFloor,ROV_Depth,WingAngleSB,"
+                            + "WingAnglePort,ActuatorPS_command,"
                             + "ActuatorSB_command,Voltage,Emergency, outsideTemp,"
                             + "insideTempCameraHouse, humidity, tempElBoxFromt,"
                             + "tempElBoxRear, I2CError, LeakDetection");
@@ -290,7 +292,6 @@ public class LogFileHandler implements Runnable {
     private void logData() {
         try {
             dataLog = "";
-
             dataLog = DataPointNumb + ","
                     + timeStampString + ","
                     + String.valueOf(data.getRollAngle()) + ","
@@ -300,8 +301,8 @@ public class LogFileHandler implements Runnable {
                     + String.valueOf(data.getRovDepth()) + ","
                     + String.valueOf(data.getFb_stepperPSPos()) + ","
                     + String.valueOf(data.getFb_stepperSBPos()) + ","
-                    + String.valueOf(data.getFb_actuatorPScmd()) + ","
-                    + String.valueOf(data.getFb_actuatorSBcmd()) + ","
+                    + String.valueOf(data.getWingAngleSb()) + ","
+                    + String.valueOf(data.getWingAnglePort()) + ","
                     + String.valueOf(data.getVoltage()) + ","
                     + String.valueOf(data.getOutsideTemp()) + ","
                     + String.valueOf(data.getInsideTemp()) + ","
