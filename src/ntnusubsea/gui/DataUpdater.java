@@ -64,9 +64,11 @@ public class DataUpdater implements Runnable {
             }
 
         }
+        System.out.println(client_Camera.isConnected());
         if (client_Camera.isConnected()) {
+
             try {
-                client_Camera.sendCommand("getData");
+//                client_Camera.sendCommand("getData");
                 if (this.lastPitch != data.getPitchAngle()) {
                     client_Camera.sendCommand("Pitch:" + data.getPitchAngle());
                 }
