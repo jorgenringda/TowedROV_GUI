@@ -129,7 +129,7 @@ public class SerialDataHandler {
                   key = (String) e.getKey();
                   portNamesList.put(key, "ROVDummy");
                 }
-                if (data[i].contains("EchoSounder") || buffer.contains("[") || buffer.contains("]")||data[i].contains("Global")){
+                if (data[i].contains("EchoSounder") || data[i].contains("[") || data[i].contains("]")||data[i].contains("Global")){
                   key = (String) e.getKey();
                   portNamesList.put(key, "EchoSounder");
                   key = key +"EchoSounder found";
