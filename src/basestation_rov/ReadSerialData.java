@@ -227,9 +227,23 @@ public class ReadSerialData implements Runnable {
                     data.setLongitude(Float.parseFloat(value));
                     //setLongitude(Float.parseFloat(value));
                     break;
+                case "Depth_of_water_0":
+                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
                 case "Depth_below_Transducer_M":
                     double doubleDepth = Double.parseDouble(value) * -1;
                     data.setDepthBeneathBoat(doubleDepth);
+                    //setDepth(Float.parseFloat(value));
+                    break;
+                case "Depth_of_water_1":
+                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
+                    //setDepth(Float.parseFloat(value));
+                    break;
+                case "Depth_of_water_value_0":
+                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
+                    //setDepth(Float.parseFloat(value));
+                    break;
+                case "Depth_of_water_2":
+                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
                     //setDepth(Float.parseFloat(value));
                     break;
                 case "Mean_Temprature_Water_C":
@@ -251,8 +265,12 @@ public class ReadSerialData implements Runnable {
                 case "Voltage":
                     data.setVoltage(Double.parseDouble(value));
                     break;
-                case "TestDepth":
+            
+                case "Depth_below_Transducer_M":
                     data.setTestDepth(Double.parseDouble(value));
+                    break;
+              
+                default:
                     break;
             }
         }
