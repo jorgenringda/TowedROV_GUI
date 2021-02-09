@@ -114,25 +114,27 @@ public class SerialDataHandler {
               buffer = buffer.substring(0, buffer.indexOf(end_char));
               // buffer = buffer.replace("?", "");
               String[] data = buffer.split(sep_char);
-
+              String key = "";
               for (int i = 0; i < data.length; i = i + 2) {
                 if (data[i].contains("Roll")) {
-                  String key = (String) e.getKey();
+                  key = (String) e.getKey();
                   portNamesList.put(key, "IMU");
                 }
-                 if (data[i].contains("GPS")) {
-                  String key = (String) e.getKey();
+                if (data[i].contains("GPS")) {
+                  key = (String) e.getKey();
                   portNamesList.put(key, "GPS");
                 }
 
-                 if (data[i].contains("ROVDummy") || data[i].contains("Test")) {
-                  String key = (String) e.getKey();
+                if (data[i].contains("ROVDummy") || data[i].contains("Test")) {
+                  key = (String) e.getKey();
                   portNamesList.put(key, "ROVDummy");
                 }
-                 if (data[i].contains("EchoSounder")||buffer.contains("<[")) {
-                  String key = (String) e.getKey();
+                if (data[i].contains("EchoSounder") || buffer.contains("[") || buffer.contains("]")||data[i].contains("Global")){
+                  key = (String) e.getKey();
                   portNamesList.put(key, "EchoSounder");
+                  key = key +"EchoSounder found";
                 }
+                System.out.println(key);
               }
             }
           }
