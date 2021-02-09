@@ -13,6 +13,7 @@
  */
 package basestation_rov;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -78,8 +79,8 @@ public class ReadSerialData implements Runnable {
         String[] portNames = SerialPortList.getPortNames();
 
         if (portNames.length == 0) {
-            // System.out.println("There are no serial-ports available!");
-            // System.out.println("Press enter to exit...");
+             System.out.println("There are no serial-ports available!");
+             //System.out.println("Press enter to exit...");
 
             try {
                 System.in.read();
@@ -89,7 +90,7 @@ public class ReadSerialData implements Runnable {
         }
 
         for (int i = 0; i < portNames.length; i++) {
-            //System.out.println(portNames[i]);
+            System.out.println(portNames[i]);
         }
         return portNames;
     }
@@ -130,7 +131,7 @@ public class ReadSerialData implements Runnable {
             try {
                 serialPort.openPort();
                 portIsOpen = true;
-                // System.out.println(comPort + " is open");
+                System.out.println(comPort + " is open");
             } catch (SerialPortException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -142,11 +143,11 @@ public class ReadSerialData implements Runnable {
             } catch (Exception ex) {
             }
             String buffer;
-
             try {
                 serialPort.setParams(baudRate, 8, 1, 0);
                 buffer = serialPort.readString();
 
+                System.out.println("reading serial data "+buffer);
                 // System.out.println(buffer);
                 boolean dataNotNull = false;
                 boolean dataHasFormat = false;
@@ -158,7 +159,9 @@ public class ReadSerialData implements Runnable {
                     dataNotNull = false;
                 }
                 if (dataHasFormat) {
-                    if (buffer.contains("<") && buffer.contains(">")) {
+
+
+                        if (buffer.contains("<") && buffer.contains(">")) {
                         String dataStream = buffer;
                         dataStream = dataStream.substring(dataStream.indexOf(startChar) + 1);
                         dataStream = dataStream.substring(0, dataStream.indexOf(endChar));
@@ -200,7 +203,7 @@ public class ReadSerialData implements Runnable {
             String value = (String) e.getValue();
 
             switch (key) {
-                case "Satellites":
+                case "Satelites_in_view_value_0":
                     data.setSatellites(Integer.parseInt(value));
                     // setSatellites(Integer.parseInt(value));
                     break;
@@ -216,20 +219,20 @@ public class ReadSerialData implements Runnable {
                     data.setSpeed(Float.parseFloat(value));
                     //setSpeed(Float.parseFloat(value));
                     break;
-                case "Latitude":
+                case "GPS_and_DOP_and_active_satalites_value_0":
                     data.setLatitude(Float.parseFloat(value));
                     //setLatitude(Float.parseFloat(value));
                     break;
-                case "Longitude":
+                case "Global_Positions_System_fix_data_value_1":
                     data.setLongitude(Float.parseFloat(value));
                     //setLongitude(Float.parseFloat(value));
                     break;
-                case "D":
+                case "Depth_below_Transducer_M":
                     double doubleDepth = Double.parseDouble(value) * -1;
                     data.setDepthBeneathBoat(doubleDepth);
                     //setDepth(Float.parseFloat(value));
                     break;
-                case "Temp":
+                case "Mean_Temprature_Water_C":
                     data.setTemperature(Float.parseFloat(value));
                     //setTemperature(Float.parseFloat(value));
                     break;
