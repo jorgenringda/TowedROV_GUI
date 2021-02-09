@@ -259,15 +259,11 @@ public class ReadSerialData implements Runnable {
                 case "Voltage":
                     data.setVoltage(Double.parseDouble(value));
                     break;
-                case "Depth_below_Transducer_f":
-                    data.setTestDepth(Double.parseDouble(value));
-                    break;
+            
                 case "Depth_below_Transducer_M":
                     data.setTestDepth(Double.parseDouble(value));
                     break;
-                case "Depth_below_Transducer_F":
-                    data.setTestDepth(Double.parseDouble(value));
-                    break;
+              
                 default:
                     break;
             }
