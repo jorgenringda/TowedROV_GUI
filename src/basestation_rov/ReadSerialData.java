@@ -34,6 +34,9 @@ public class ReadSerialData implements Runnable {
     String myName = "";
     int baudRate = 0;
     Data data = null;
+    private String startChar = "<";
+    private String endChar = ">";
+    private String seperationChar = ":";
     public HashMap<String, String> incommingData = new HashMap<>();
     private static volatile double depth;
     private static volatile double tempC;
@@ -121,9 +124,7 @@ public class ReadSerialData implements Runnable {
         // ConcurrentHashMap<String, String> SerialDataList = new ConcurrentHashMap<>();
         boolean recievedData = false;
         //Declare special symbol used in serial data stream from Arduino
-        String startChar = "<";
-        String endChar = ">";
-        String seperationChar = ":";
+
 
         SerialPort serialPort = new SerialPort(comPort);
 
@@ -159,24 +160,16 @@ public class ReadSerialData implements Runnable {
                     dataNotNull = false;
                 }
                 if (dataHasFormat) {
+                        buffer = buffer.replaceAll("[\\<\\[]","");
+                        buffer = buffer.replaceAll("[\\]\\>]","");
+                        String[] bufferArray = buffer.split("\", \"");
+                        if (bufferArray.length > 1){
+                                for (String s : bufferArray){
+                                    handleDataString(s);
+                                }
 
 
-                        if (buffer.contains("<") && buffer.contains(">")) {
-                        String dataStream = buffer;
-                        dataStream = dataStream.substring(dataStream.indexOf(startChar) + 1);
-                        dataStream = dataStream.substring(0, dataStream.indexOf(endChar));
-                        //dataStream = dataStream.replace("?", "");
-                        String[] data = dataStream.split(seperationChar);
-
-                        for (int i = 0; i < data.length; i = i + 2) {
-                            //this.data.data.put(data[i], data[i + 1]);
-                            incommingData.put(data[i], data[i + 1]);
-                        }
-                        //recievedData = true;
-                        //this.data.handleDataFromRemote();
-                        sendIncommingDataToDataHandler();
-                    }
-                }
+                }else  handleDataString(buffer);
 
 //            if (elapsedTimer != 0)
 //            {
@@ -187,12 +180,30 @@ public class ReadSerialData implements Runnable {
 //                System.out.println("Data is recieved in: " + elapsedTimer + " millis"
 //                        + " or with: unlimited Hz!");
 //            }
-            } catch (Exception ex) {
-                System.out.println("Lost connection to " + myName + "    Ex: " + ex);
             }
+            }catch (Exception ex) {
+                System.out.println("Lost connection to " + myName + "    Ex: " + ex);
         }
     }
 
+    }
+    private void handleDataString(String buffer) throws Exception
+    {
+        if(buffer.contains("<") && buffer.contains(">")) {
+        String dataStream = buffer;
+        dataStream = dataStream.substring(dataStream.indexOf(startChar) + 1);
+        dataStream = dataStream.substring(0, dataStream.indexOf(endChar));
+        //dataStream = dataStream.replace("?", "");
+        String[] data = dataStream.split(seperationChar);
+
+        for (int i = 0; i < data.length; i = i + 2) {
+            //this.data.data.put(data[i], data[i + 1]);
+            incommingData.put(data[i], data[i + 1]);
+        }
+        //recievedData = true;
+        //this.data.handleDataFromRemote();
+        sendIncommingDataToDataHandler();
+    }}
     /**
      * Compare keys to control values coming in from remote, and puts the
      * correct value to correct variable in the shared resource Data class.
@@ -203,7 +214,7 @@ public class ReadSerialData implements Runnable {
             String value = (String) e.getValue();
 
             switch (key) {
-                case "Satelites_in_view_value_0":
+                case "Satelites_in_view_satellites_in_view":
                     data.setSatellites(Integer.parseInt(value));
                     // setSatellites(Integer.parseInt(value));
                     break;
@@ -215,7 +226,7 @@ public class ReadSerialData implements Runnable {
                     data.setGPSAngle(Double.parseDouble(value));
                     //setAngle(Float.parseFloat(value));
                     break;
-                case "Speed":
+                case "Track_made_good_and_ground_speed_speed_Km":
                     data.setSpeed(Float.parseFloat(value));
                     //setSpeed(Float.parseFloat(value));
                     break;
@@ -228,8 +239,7 @@ public class ReadSerialData implements Runnable {
                     //setLongitude(Float.parseFloat(value));
                     break;
                 case "Depth_of_water_0":
-                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
-                case "Depth_below_Transducer_M":
+                case "Depth_below_Transducer_meters":
                     double doubleDepth = Double.parseDouble(value) * -1;
                     data.setDepthBeneathBoat(doubleDepth);
                     //setDepth(Float.parseFloat(value));
