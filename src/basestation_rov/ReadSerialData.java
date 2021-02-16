@@ -37,6 +37,7 @@ public class ReadSerialData implements Runnable {
     private String startChar = "<";
     private String endChar = ">";
     private String seperationChar = ":";
+    private String runOver="";
     public HashMap<String, String> incommingData = new HashMap<>();
     private static volatile double depth;
     private static volatile double tempC;
@@ -140,16 +141,31 @@ public class ReadSerialData implements Runnable {
 
         while (recievedData == false) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (Exception ex) {
             }
-            String buffer;
-            try {
+            String[] buffer=null;
+            String message =runOver;
+            runOver="";
+            boolean reading = true;
+            try{
                 serialPort.setParams(baudRate, 8, 1, 0);
-                buffer = serialPort.readString();
-
-                System.out.println("reading serial data "+buffer);
-                // System.out.println(buffer);
+                
+                while(reading){
+                message += serialPort.readString();
+                if (message.contains("]")){
+                    
+                    buffer = message.split("]");
+                    if (buffer.length >1){
+                    runOver = buffer[1];}
+                    message = buffer[0];
+                    message = message.replace("null", "");
+                    reading=false;
+                }
+               
+                    
+                }
+               
                 boolean dataNotNull = false;
                 boolean dataHasFormat = false;
 
@@ -160,16 +176,15 @@ public class ReadSerialData implements Runnable {
                     dataNotNull = false;
                 }
                 if (dataHasFormat) {
-                        buffer = buffer.replaceAll("[\\<\\[]","");
-                        buffer = buffer.replaceAll("[\\]\\>]","");
-                        String[] bufferArray = buffer.split("\", \"");
+                        String[] bufferArray = message.split("\", \"");
                         if (bufferArray.length > 1){
+                             
                                 for (String s : bufferArray){
-                                    handleDataString(s);
+                                    handleDataString(s.substring(s.indexOf('<')));
                                 }
 
 
-                }else  handleDataString(buffer);
+                }else { handleDataString(message);}
 
 //            if (elapsedTimer != 0)
 //            {
@@ -182,22 +197,27 @@ public class ReadSerialData implements Runnable {
 //            }
             }
             }catch (Exception ex) {
+                ex.getStackTrace();
                 System.out.println("Lost connection to " + myName + "    Ex: " + ex);
         }
     }
 
     }
-    private void handleDataString(String buffer) throws Exception
+    private void handleDataString(String dataStream) throws Exception
     {
-        if(buffer.contains("<") && buffer.contains(">")) {
-        String dataStream = buffer;
-        dataStream = dataStream.substring(dataStream.indexOf(startChar) + 1);
-        dataStream = dataStream.substring(0, dataStream.indexOf(endChar));
+        if(dataStream.contains("<") && dataStream.contains(">")) {
+   
+        
+        
+        dataStream = dataStream.substring(dataStream.indexOf(startChar) + 1,dataStream.indexOf(endChar));
         //dataStream = dataStream.replace("?", "");
         String[] data = dataStream.split(seperationChar);
-
         for (int i = 0; i < data.length; i = i + 2) {
             //this.data.data.put(data[i], data[i + 1]);
+            
+            System.out.println(data[i]);
+            
+            System.out.println(data[i+1]);
             incommingData.put(data[i], data[i + 1]);
         }
         //recievedData = true;
@@ -213,6 +233,9 @@ public class ReadSerialData implements Runnable {
             String key = (String) e.getKey();
             String value = (String) e.getValue();
 
+            System.out.println(key);
+            
+            System.out.println(value);
             switch (key) {
                 case "Satelites_in_view_satellites_in_view":
                     data.setSatellites(Integer.parseInt(value));
@@ -226,34 +249,21 @@ public class ReadSerialData implements Runnable {
                     data.setGPSAngle(Double.parseDouble(value));
                     //setAngle(Float.parseFloat(value));
                     break;
-                case "Track_made_good_and_ground_speed_speed_Km":
+                case "speed":
                     data.setSpeed(Float.parseFloat(value));
                     //setSpeed(Float.parseFloat(value));
                     break;
-                case "GPS_and_DOP_and_active_satalites_value_0":
+                case "Latitude":
                     data.setLatitude(Float.parseFloat(value));
                     //setLatitude(Float.parseFloat(value));
                     break;
-                case "Global_Positions_System_fix_data_value_1":
+                case "Longitude":
                     data.setLongitude(Float.parseFloat(value));
                     //setLongitude(Float.parseFloat(value));
                     break;
-                case "Depth_of_water_0":
-                case "Depth_below_Transducer_meters":
+                case "Depth_below_Transducer_water_depth_meters":
                     double doubleDepth = Double.parseDouble(value) * -1;
                     data.setDepthBeneathBoat(doubleDepth);
-                    //setDepth(Float.parseFloat(value));
-                    break;
-                case "Depth_of_water_1":
-                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
-                    //setDepth(Float.parseFloat(value));
-                    break;
-                case "Depth_of_water_value_0":
-                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
-                    //setDepth(Float.parseFloat(value));
-                    break;
-                case "Depth_of_water_2":
-                    data.setDepthBeneathBoat(Double.parseDouble(value) * -1);
                     //setDepth(Float.parseFloat(value));
                     break;
                 case "Mean_Temprature_Water_C":
@@ -279,7 +289,6 @@ public class ReadSerialData implements Runnable {
                 case "Depth_below_Transducer_f":
                     data.setTestDepth(Double.parseDouble(value));
                     break;
-              
                 default:
                     break;
             }

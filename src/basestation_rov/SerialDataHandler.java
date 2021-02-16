@@ -59,12 +59,13 @@ public class SerialDataHandler {
     for (Entry e : portNamesList.entrySet()) {
       String comPortKey = (String) e.getKey();
       String comPortValue = (String) e.getValue();
+      System.out.println(comPortKey+comPortValue);
       if (!comPortValue.contains("Unknown")) {
         data.comPortList.put(comPortKey, comPortValue);
         comCheck++;
       }
     }
-    if (comCheck < 3) {
+    if (comCheck < 0) {
       //Not all comports was found
       System.out.println("ERROR: Not all com ports was found, trying again...");
       findComPorts();
@@ -78,7 +79,7 @@ public class SerialDataHandler {
     int e_numb = 0;
     int baudrate = 0;
     int searchRuns = 0;
-    while (searchRuns != 3) {
+    while (searchRuns <= 1) {
       String[] portNames = getAvailableComPorts();
       for (int i = 0; i < portNames.length; i++) {
         if (portNames[i].contains("COM")) {
@@ -87,9 +88,6 @@ public class SerialDataHandler {
       }
 
       if (searchRuns == 0) {
-        baudrate = 115200;
-      }
-      if (searchRuns == 1) {
         baudrate = 9600;
       }
 
@@ -108,35 +106,20 @@ public class SerialDataHandler {
           buffer = serialPort.readString();
 
           if (buffer != null) {
-
-            if (buffer.contains("<") && buffer.contains(">")) {
+               System.out.println(buffer);
+            if (buffer.contains("<") || buffer.contains(">")) {
               buffer = buffer.substring(buffer.indexOf(start_char) + 1);
               buffer = buffer.substring(0, buffer.indexOf(end_char));
               // buffer = buffer.replace("?", "");
               String[] data = buffer.split(sep_char);
               String key = "";
-              for (int i = 0; i < data.length; i = i + 2) {
-                if (data[i].contains("Roll")) {
-                  key = (String) e.getKey();
-                  portNamesList.put(key, "IMU");
-                }
-                if (data[i].contains("GPS")) {
-                  key = (String) e.getKey();
-                  portNamesList.put(key, "GPS");
-                }
-
-                if (data[i].contains("ROVDummy") || data[i].contains("Test")) {
-                  key = (String) e.getKey();
-                  portNamesList.put(key, "ROVDummy");
-                }
-                if (data[i].contains("EchoSounder") || data[i].contains("[") || data[i].contains("]")||data[i].contains("Global")){
                   key = (String) e.getKey();
                   portNamesList.put(key, "EchoSounder");
                   key = key +"EchoSounder found";
-                }
+         
                 System.out.println(key);
               }
-            }
+            
           }
           serialPort.closePort();
         } catch (Exception ex) {
