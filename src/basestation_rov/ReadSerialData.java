@@ -180,24 +180,19 @@ public class ReadSerialData implements Runnable {
                         if (bufferArray.length > 1){
                              
                                 for (String s : bufferArray){
+                                    String literal="<[A-Za-z0-9._=: ]*>\"*";
+                                    if(s.matches(literal)) {
+                                        
                                     handleDataString(s.substring(s.indexOf('<')));
+                                }
                                 }
 
 
                 }else { handleDataString(message);}
 
-//            if (elapsedTimer != 0)
-//            {
-//                System.out.println("Data is recieved in: " + elapsedTimer + " millis"
-//                        + " or with: " + 1000 / elapsedTimer + " Hz");
-//            } else
-//            {
-//                System.out.println("Data is recieved in: " + elapsedTimer + " millis"
-//                        + " or with: unlimited Hz!");
-//            }
             }
             }catch (Exception ex) {
-                ex.getStackTrace();
+                ex.printStackTrace();
                 System.out.println("Lost connection to " + myName + "    Ex: " + ex);
         }
     }
@@ -205,25 +200,22 @@ public class ReadSerialData implements Runnable {
     }
     private void handleDataString(String dataStream) throws Exception
     {
-        if(dataStream.contains("<") && dataStream.contains(">")) {
-   
         
+   
         
         dataStream = dataStream.substring(dataStream.indexOf(startChar) + 1,dataStream.indexOf(endChar));
         //dataStream = dataStream.replace("?", "");
         String[] data = dataStream.split(seperationChar);
-        for (int i = 0; i < data.length; i = i + 2) {
+        
+        
+        for (int i = 0; i < (data.length - data.length%2); i = i + 2) {
             //this.data.data.put(data[i], data[i + 1]);
-            
-            System.out.println(data[i]);
-            
-            System.out.println(data[i+1]);
             incommingData.put(data[i], data[i + 1]);
         }
         //recievedData = true;
         //this.data.handleDataFromRemote();
         sendIncommingDataToDataHandler();
-    }}
+    }
     /**
      * Compare keys to control values coming in from remote, and puts the
      * correct value to correct variable in the shared resource Data class.
@@ -232,13 +224,9 @@ public class ReadSerialData implements Runnable {
         for (Map.Entry e : incommingData.entrySet()) {
             String key = (String) e.getKey();
             String value = (String) e.getValue();
-
-            System.out.println(key);
-            
-            System.out.println(value);
             switch (key) {
                 case "Satelites_in_view_satellites_in_view":
-                    data.setSatellites(Integer.parseInt(value));
+                    data.setSatellites((int)Float.parseFloat(value));
                     // setSatellites(Integer.parseInt(value));
                     break;
                 case "Altitude":
@@ -266,7 +254,7 @@ public class ReadSerialData implements Runnable {
                     data.setDepthBeneathBoat(doubleDepth);
                     //setDepth(Float.parseFloat(value));
                     break;
-                case "Mean_Temprature_Water_C":
+                case "Mean_Temprature_Water_temp_degree":
                     data.setTemperature(Float.parseFloat(value));
                     //setTemperature(Float.parseFloat(value));
                     break;
