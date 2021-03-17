@@ -6,35 +6,13 @@ Light sensor
 NA
 Extra lights
 Water sample
+test
 NA
-NA
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-10
-
-
-0
-0
-0
-0
-=======
-=======
->>>>>>> parent of b75d94c... y
-=======
->>>>>>> parent of b75d94c... y
-1
+2
 0.1
-1
-8
-8
-3
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b75d94c... y
-=======
->>>>>>> parent of b75d94c... y
-=======
->>>>>>> parent of b75d94c... y
+0
+2
+0
+0
 0
 0

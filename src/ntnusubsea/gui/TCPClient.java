@@ -117,7 +117,7 @@ public class TCPClient extends Thread {
     public synchronized void sendCommand(String cmd) throws IOException {
         try {
             if (isConnected()) {
-                System.out.println(cmd);
+//                System.out.println(cmd);
                 String commandString = "<" + cmd + ">";
                 outToServer.println(commandString);
 //                System.out.println("Cmd sent: " + commandString);

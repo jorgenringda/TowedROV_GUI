@@ -88,7 +88,7 @@ public class NTNUSubseaGUI {
         executor.scheduleAtFixedRate(rovRotationPlot,
                 0, 100, TimeUnit.MILLISECONDS);
         executor.scheduleAtFixedRate(dataUpdater,
-                1000, 100, TimeUnit.MILLISECONDS);
+                100, 100, TimeUnit.MILLISECONDS);
 
         comPortFinderThread = new Thread(new ComPortFinder(sdh, data));
         comPortFinderThread.start();

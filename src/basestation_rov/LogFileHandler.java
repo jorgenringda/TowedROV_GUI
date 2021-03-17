@@ -77,7 +77,6 @@ public class LogFileHandler implements Runnable {
     BufferedWriter outputWriterShipPos = null;
     BufferedWriter outputWriterData = null;
     BufferedWriter outputWriterTelementry = null;
-    BufferedWriter outputWriterExif = null;
 
     int lastImageNumber = 0;
     boolean exifSetup = false;
@@ -101,12 +100,7 @@ public class LogFileHandler implements Runnable {
                 //SimpleDateFormat exifTime = new SimpleDateFormat("yyyyMMddHHmmss");
                 exifDateAndTime = new SimpleDateFormat("yyyyMMddHHmmss");
                 dateExif = new Date(System.currentTimeMillis());
-                exifLogFile = new File(logStorageLocation + "EXIF_LOG_" + exifDateAndTime.format(dateExif) + ".csv");
-                FileUtils.touch(exifLogFile);
 
-                outputWriterExif = new BufferedWriter(new FileWriter(exifLogFile));
-                outputWriterExif.append("Latitude,Longtitude,Time");
-                outputWriterExif.flush();
                 exifSetup = true;
                 data.setImagesCleared(true);
 
@@ -119,7 +113,6 @@ public class LogFileHandler implements Runnable {
             dateExif = new Date(System.currentTimeMillis());
             exifDateAndTime.format(dateExif);
             lastImageNumber++;
-            logExifData();
 
         }
 
@@ -240,27 +233,9 @@ public class LogFileHandler implements Runnable {
         try {
             outputWriterShipPos.close();
             outputWriterData.close();
-            outputWriterExif.close();
             outputWriterTelementry.close();
         } catch (Exception e) {
             System.out.println("Problem closing log file");
-        }
-
-    }
-
-    /**
-     * Logs the exif data to file
-     */
-    private void logExifData() {
-        try {
-            exifLog = "";
-            exifLog = data.getLatitude() + ","
-                    + data.getLongitude();
-
-            outputWriterExif.append('\n');
-            outputWriterExif.append(telementryLog);
-            outputWriterExif.flush();
-        } catch (Exception e) {
         }
 
     }
