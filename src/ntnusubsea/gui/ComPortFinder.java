@@ -83,31 +83,11 @@ public class ComPortFinder implements Runnable {
             for (Map.Entry e : data.comPortList.entrySet()) {
                 String comPortKey = (String) e.getKey();
                 String comPortValue = (String) e.getValue();
-                if (comPortValue.contains("IMU")) {
-                    imuThread = new Thread(new ReadSerialData(data, comPortKey, 115200, comPortValue));
-                    imuThread.start();
-                    imuThread.setName(comPortValue);
-                }
-                if (comPortValue.contains("GPS")) {
-                    gpsThread = new Thread(new ReadSerialData(data, comPortKey, 115200, comPortValue));
-                    gpsThread.start();
-                    gpsThread.setName(comPortValue);
-                }
-                if (comPortValue.contains("EchoSounder")) {
-                    echoSounderThread = new Thread(new ReadSerialData(data, comPortKey, 4800, comPortValue));
-                    echoSounderThread.start();
-                    echoSounderThread.setName(comPortValue);
-                }
-                if (comPortValue.contains("StepperArduino")) {
-                    stepperArduinoThread = new Thread(new ReadSerialData(data, comPortKey, 128000, comPortValue));
-                    stepperArduinoThread.start();
-                    stepperArduinoThread.setName(comPortValue);
-                }
-                if (comPortValue.contains("ROVDummy")) {
-                    ROVDummyThread = new Thread(new ReadSerialData(data, comPortKey, 115200, comPortValue));
-                    ROVDummyThread.start();
-                    ROVDummyThread.setName(comPortValue);
-                }
+                
+                echoSounderThread = new Thread(new ReadSerialData(data, comPortKey, 9600, comPortValue));
+                echoSounderThread.start();
+                echoSounderThread.setName(comPortValue);
+
             }
         }
         //}

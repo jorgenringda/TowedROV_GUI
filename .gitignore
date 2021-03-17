@@ -2,3 +2,9 @@
 /build/
 /dist/
 ROV Options.txt
+
+.idea/
+
+hs_err_pid11916.log
+
+hs_err_pid13152.log
